@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Motivational Quotes</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="about">We will make your day inspirational.
+
+\n\n\nWe are here to inspire your every single day with daily motivational quote, it can give you strength which you\'ve lost it somewhere, it can help you to find your happiness which you\'ve lost it somehow, it will tell you that get yourself up by your own.
+
+        \n\n Features:-
+        \n\n- Share the Quotes everywhere.
+        \n- Night Mode
+<!--\n\n• Share quotes everywhere.-->
+
+\n\n Upcoming Updates:-
+\n\n• Customise notifications.
+\n• ‎Night Mode.
+\n• ‎Search quotes.
+\n• ‎Hindi Quotes.</string>
+</resources>
