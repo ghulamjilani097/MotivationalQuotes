@@ -5,14 +5,19 @@ import android.graphics.Typeface;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Random;
 
 public class Splash extends AppCompatActivity {
 
+    Button day,night;
+    boolean mode=false;
     private String[] title = {
             "ENJOY EVERY MOMENT",
             "STAY MOTIVATED",
@@ -28,6 +33,24 @@ public class Splash extends AppCompatActivity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_splash);
+
+        day=(Button)findViewById(R.id.whitetheme);
+        night=(Button)findViewById(R.id.darktheme);
+        day.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mode=false;
+                Toast.makeText(Splash.this, "Day", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        night.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mode=true;
+                Toast.makeText(Splash.this, "Night", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         TextView splash,quote;
         splash=(TextView)findViewById(R.id.txtsplash);
@@ -51,6 +74,7 @@ public class Splash extends AppCompatActivity {
                 try {
                     sleep(3000);
                     Intent intent= new Intent(getApplicationContext(),MainActivity.class);
+                    intent.putExtra("mode",mode);
                     startActivity(intent);
                     finish();
                 } catch (InterruptedException e) {

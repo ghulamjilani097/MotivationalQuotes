@@ -47,14 +47,16 @@ public class ViewPagerAdapter extends PagerAdapter  {
     static ViewGroup container2=null;
     private boolean isNightModeEnabled = false;
     int i=0;
+    boolean mode;
 //    NotificationCompat.Builder notification;
 //    private static final int Unique=4562;
 
 
 
-    public ViewPagerAdapter(List<QuotesStructure> listItems, Activity activity) {
+    public ViewPagerAdapter(List<QuotesStructure> listItems, Activity activity,boolean mode) {
         this.listItems = listItems;
         this.activity=activity;
+        this.mode=mode;
     }
 
 
@@ -99,11 +101,29 @@ public class ViewPagerAdapter extends PagerAdapter  {
         quotes.setText(quotesStructure.getQuotes());
         author.setText(quotesStructure.getAuthor());
 
-        if(isNightModeEnabled)
+        /*if(isNightModeEnabled)
         {
             quotes.setTextColor(Color.parseColor("#ffffff"));
             author.setTextColor(Color.parseColor("#0092cc"));
             container2.setBackgroundColor(Color.parseColor("#000000"));
+        }*/
+
+        if(mode==true){
+//            activity.setTheme(R.style.BlackTheme);
+
+            quotes.setTextColor(Color.parseColor("#ffffff"));
+            author.setTextColor(Color.parseColor("#0092cc"));
+            container.setBackgroundColor(Color.parseColor("#000000"));
+
+            Toast.makeText(activity, "night mode", Toast.LENGTH_SHORT).show();
+        }
+        else if(mode==false){
+//            activity.setTheme(R.style.whiteTheme);
+            quotes.setTextColor(Color.parseColor("#000000"));
+            author.setTextColor(Color.parseColor("#8A8A8A"));
+            container.setBackgroundColor(Color.parseColor("#ffffff"));
+
+            Toast.makeText(activity, "day mode", Toast.LENGTH_SHORT).show();
         }
 
 
@@ -122,38 +142,37 @@ public class ViewPagerAdapter extends PagerAdapter  {
         });
         container2=container;
 
-
         theme.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 //                Toast.makeText(activity, ""+listItems.size(), Toast.LENGTH_SHORT).show();
-
-                i++;
+                    i++;
 //                Handler handler = new Handler();
                 Runnable r = new Runnable() {
-
                     @Override
                     public void run() {
                         i = 0;
-
                     }
                 };
-
-                if (i == 1) {
+                if (i == 1)
+                {
                     //Single click
+                    activity.setTheme(R.style.BlackTheme);
                     isNightModeEnabled = true;
                         quotes.setTextColor(Color.parseColor("#ffffff"));
                         author.setTextColor(Color.parseColor("#0092cc"));
                         container.setBackgroundColor(Color.parseColor("#000000"));
                     Toast.makeText(activity, "Night Mode", Toast.LENGTH_SHORT).show();
-                } else if (i == 2) {
+                }
+                else if (i == 2)
+                {
                     //Double click
+                    activity.setTheme(R.style.BlackTheme);
                     i = 0;
                     isNightModeEnabled=false;
                     quotes.setTextColor(Color.parseColor("#000000"));
                     author.setTextColor(Color.parseColor("#8A8A8A"));
                     container.setBackgroundColor(Color.parseColor("#ffffff"));
-
                     Toast.makeText(activity, "Day Mode", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -199,7 +218,6 @@ public class ViewPagerAdapter extends PagerAdapter  {
     public void destroyItem(final ViewGroup container, int position, Object object) {
         ((ViewPager) container).removeView((View)object);
     }
-
 
 
 }

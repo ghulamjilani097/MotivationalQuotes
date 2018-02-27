@@ -86,5 +86,4 @@ public class Sqlite extends SQLiteOpenHelper {
         Log.d("akam",COLUMN_QUOTE+"-"+COLUMN_AUTHOR);
         db.close();
     }
-
 }

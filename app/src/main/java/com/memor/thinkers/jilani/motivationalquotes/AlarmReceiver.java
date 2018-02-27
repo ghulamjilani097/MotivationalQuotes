@@ -33,6 +33,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 
     Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
     static QuotesStructure quotesStructure;
+    long when = System.currentTimeMillis();
     private static final int Unique=4562;
     Random randGen = new Random();
     Activity activity;
@@ -84,6 +85,7 @@ public class AlarmReceiver extends BroadcastReceiver {
                             .setSound(alarmSound)
                             .setAutoCancel(true)
                             .setOnlyAlertOnce(true)
+                            .setWhen(when)
                             .setDefaults(Notification.DEFAULT_VIBRATE)
                             .setStyle(new NotificationCompat.BigTextStyle().bigText(abc+"\n"+"-"+jsd));
             Intent resultIntent = new Intent(context, MainActivity.class);

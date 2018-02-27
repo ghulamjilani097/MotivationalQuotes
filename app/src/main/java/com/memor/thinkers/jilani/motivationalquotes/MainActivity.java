@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity
     ViewPagerAdapter viewPagerAdapter;
     private List<QuotesStructure> listItems;
     Sqlite sqlite;
+    boolean mode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -158,8 +159,6 @@ public class MainActivity extends AppCompatActivity
 
             fragment=new About();
 
-
-
         } else if (id == R.id.nav_slideshow) {
             Intent intent = new Intent(Intent.ACTION_VIEW);
             intent.setData(Uri.parse("https://play.google.com/store/apps/dev?id=5700313618786177705"));
@@ -204,6 +203,7 @@ public class MainActivity extends AppCompatActivity
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         finally {
             try {
                 br.close();
@@ -224,15 +224,26 @@ public class MainActivity extends AppCompatActivity
                 listItems.add(item);
 //                Toast.makeText(this, ""+jsonObj.getString("quote"), Toast.LENGTH_SHORT).show();
             }
-            viewPagerAdapter= new ViewPagerAdapter(listItems,MainActivity.this);
+            Bundle extra=getIntent().getExtras();
+            if(extra!=null){
+                mode=extra.getBoolean("mode");
+            }
+            viewPagerAdapter= new ViewPagerAdapter(listItems,MainActivity.this,mode);
             sqlite=new Sqlite(getApplicationContext());
             sqlite.jilani(MainActivity.this,listItems);
             viewPager.setAdapter(viewPagerAdapter);
-//                    viewPager.setOffscreenPageLimit(1);
+          viewPager.setOffscreenPageLimit(1);
 
         }catch (JSONException e){
             e.printStackTrace();
         }
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        finish();
+        startActivity(getIntent());
     }
 
     private void handleNotification() {
@@ -240,8 +251,8 @@ public class MainActivity extends AppCompatActivity
         long t = System.currentTimeMillis();
 //        jsonparse();
         Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY,23);
-        calendar.set(Calendar.MINUTE, 13);
+        calendar.set(Calendar.HOUR_OF_DAY,01);
+        calendar.set(Calendar.MINUTE, 11);
         calendar.set(Calendar.SECOND, 00);
 
         if (t <= calendar.getTimeInMillis()) {
@@ -249,7 +260,7 @@ public class MainActivity extends AppCompatActivity
             alarmIntent.setAction("alarm");
             PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
             AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 86400000, pendingIntent);
+            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
         }
     }
 }
