@@ -40,6 +40,11 @@ public class Splash extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 mode=false;
+                Intent c=new Intent(getApplicationContext(), MainActivity.class);
+                c.putExtra("mode",mode);
+                c.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(c);
+                Splash.this.overridePendingTransition(0,0);
                 Toast.makeText(Splash.this, "Day", Toast.LENGTH_SHORT).show();
             }
         });
@@ -48,6 +53,11 @@ public class Splash extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 mode=true;
+                Intent b=new Intent(getApplicationContext(), MainActivity.class);
+                b.putExtra("mode",mode);
+                b.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(b);
+                Splash.this.overridePendingTransition(0,0);
                 Toast.makeText(Splash.this, "Night", Toast.LENGTH_SHORT).show();
             }
         });
@@ -67,21 +77,21 @@ public class Splash extends AppCompatActivity {
 
         quote.setText(nextValue);
 
-        Thread thread=new Thread()
-        {
-            @Override
-            public void run() {
-                try {
-                    sleep(3000);
-                    Intent intent= new Intent(getApplicationContext(),MainActivity.class);
-                    intent.putExtra("mode",mode);
-                    startActivity(intent);
-                    finish();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-        thread.start();
+//        Thread thread=new Thread()
+//        {
+//            @Override
+//            public void run() {
+//                try {
+//                    sleep(3000);
+//                    Intent intent= new Intent(getApplicationContext(),MainActivity.class);
+//                    intent.putExtra("mode",mode);
+//                    startActivity(intent);
+//                    finish();
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        };
+//        thread.start();
     }
 }
