@@ -17,7 +17,7 @@ import java.util.Random;
 public class Splash extends AppCompatActivity {
 
     Button day,night;
-    boolean mode=false;
+    static boolean mode=false;
     private String[] title = {
             "ENJOY EVERY MOMENT",
             "STAY MOTIVATED",

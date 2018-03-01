@@ -47,7 +47,7 @@ public class ViewPagerAdapter extends PagerAdapter  {
     static ViewGroup container2=null;
     private boolean isNightModeEnabled = false;
     int i=0;
-    boolean mode;
+    static boolean mode;
 //    NotificationCompat.Builder notification;
 //    private static final int Unique=4562;
 

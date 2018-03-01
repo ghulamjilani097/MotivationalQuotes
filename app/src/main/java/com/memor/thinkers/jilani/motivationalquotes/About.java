@@ -2,6 +2,7 @@ package com.memor.thinkers.jilani.motivationalquotes;
 
 
 import android.app.ActionBar;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -18,11 +21,15 @@ import android.widget.Toast;
  */
 public class About extends Fragment {
 
-
+    static boolean mode;
+    TextView about;
+    FrameLayout aboutframe;
 
     public About() {
         // Required empty public constructor
     }
+
+
 
 
     @Override
@@ -31,9 +38,20 @@ public class About extends Fragment {
         // Inflate the layout for this fragment
         View root=inflater.inflate(R.layout.fragment_about, container, false);
         MainActivity activity=(MainActivity) getActivity();
-      //  Toolbar tool=(Toolbar)root.findViewById(R.id.toolbar);
-        //activity.setSupportActionBar(tool);
+
+        about=(TextView)root.findViewById(R.id.abouttext);
+        aboutframe=(FrameLayout) root.findViewById(R.id.fragment_about);
+
         activity.getSupportActionBar().setTitle("About Us");
+        Bundle b=getArguments();
+        mode=b.getBoolean("mode");
+        if(mode==true)
+        {
+            about.setTextColor(Color.parseColor("#ffffff"));
+            aboutframe.setBackgroundColor(Color.parseColor("#000000"));
+        }
+
+        Toast.makeText(activity, ""+mode, Toast.LENGTH_SHORT).show();
 
 
         return root;

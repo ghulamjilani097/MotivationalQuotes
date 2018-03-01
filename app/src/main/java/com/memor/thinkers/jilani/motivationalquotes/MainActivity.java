@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity
     ViewPagerAdapter viewPagerAdapter;
     private List<QuotesStructure> listItems;
     Sqlite sqlite;
-    boolean mode;
+    static boolean mode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -156,8 +156,12 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_gallery)
 
         {
-
             fragment=new About();
+            Bundle b= new Bundle();
+
+            b.putBoolean("mode",mode);
+
+            fragment.setArguments(b);
 
         } else if (id == R.id.nav_slideshow) {
             Intent intent = new Intent(Intent.ACTION_VIEW);
