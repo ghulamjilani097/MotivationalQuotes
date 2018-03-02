@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity
     ImageView left,right;
     Toolbar toolbar;
     TextView text;
-    int i=0;
+    static int i;
     ViewPager viewPager;
     ViewPagerAdapter viewPagerAdapter;
     private List<QuotesStructure> listItems;
@@ -158,9 +158,7 @@ public class MainActivity extends AppCompatActivity
         {
             fragment=new About();
             Bundle b= new Bundle();
-
             b.putBoolean("mode",mode);
-
             fragment.setArguments(b);
 
         } else if (id == R.id.nav_slideshow) {
@@ -169,14 +167,32 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
 
         }
-//        else if (id == R.id.theme) {
-////            colorchange();
-//
-//        }
+        else if (id == R.id.whitetheme) {
+        i=0;
+        mode=false;
+            Intent a=new Intent(this, MainActivity.class);
+            a.putExtra("mode",mode);
+            a.putExtra("i",i);
+            a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(a);
+            overridePendingTransition(0,0);
 
-//        } else if (id == R.id.nav_share) {
-//
-//        } else if (id == R.id.nav_send) {
+        }
+
+        else if (id == R.id.Black) {
+            i=1;
+            mode=true;
+            Intent a=new Intent(this, MainActivity.class);
+            a.putExtra("mode",mode);
+            a.putExtra("i",i);
+            a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(a);
+            overridePendingTransition(0,0);
+
+
+
+        }
+//        else if (id == R.id.nav_send) {
 //
 //        }
 
@@ -231,8 +247,9 @@ public class MainActivity extends AppCompatActivity
             Bundle extra=getIntent().getExtras();
             if(extra!=null){
                 mode=extra.getBoolean("mode");
+                i=extra.getInt("i");
             }
-            viewPagerAdapter= new ViewPagerAdapter(listItems,MainActivity.this,mode);
+            viewPagerAdapter= new ViewPagerAdapter(listItems,MainActivity.this,mode,i);
             sqlite=new Sqlite(getApplicationContext());
             sqlite.jilani(MainActivity.this,listItems);
             viewPager.setAdapter(viewPagerAdapter);

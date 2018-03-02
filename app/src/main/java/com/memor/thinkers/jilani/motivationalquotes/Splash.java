@@ -17,6 +17,7 @@ import java.util.Random;
 public class Splash extends AppCompatActivity {
 
     Button day,night;
+    static int i;
     static boolean mode=false;
     private String[] title = {
             "ENJOY EVERY MOMENT",
@@ -39,9 +40,11 @@ public class Splash extends AppCompatActivity {
         day.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                i=0;
                 mode=false;
                 Intent c=new Intent(getApplicationContext(), MainActivity.class);
                 c.putExtra("mode",mode);
+                c.putExtra("i",i);
                 c.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(c);
                 Splash.this.overridePendingTransition(0,0);
@@ -52,9 +55,11 @@ public class Splash extends AppCompatActivity {
         night.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                i=1;
                 mode=true;
                 Intent b=new Intent(getApplicationContext(), MainActivity.class);
                 b.putExtra("mode",mode);
+                b.putExtra("i",i);
                 b.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(b);
                 Splash.this.overridePendingTransition(0,0);

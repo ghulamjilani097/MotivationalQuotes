@@ -46,17 +46,18 @@ public class ViewPagerAdapter extends PagerAdapter  {
     ImageView share,theme;
     static ViewGroup container2=null;
     private boolean isNightModeEnabled = false;
-    int i=0;
+    static int i;
     static boolean mode;
 //    NotificationCompat.Builder notification;
 //    private static final int Unique=4562;
 
 
 
-    public ViewPagerAdapter(List<QuotesStructure> listItems, Activity activity,boolean mode) {
+    public ViewPagerAdapter(List<QuotesStructure> listItems, Activity activity,boolean mode, int i) {
         this.listItems = listItems;
         this.activity=activity;
         this.mode=mode;
+        this.i=i;
     }
 
 
@@ -115,7 +116,7 @@ public class ViewPagerAdapter extends PagerAdapter  {
             author.setTextColor(Color.parseColor("#0092cc"));
             container.setBackgroundColor(Color.parseColor("#000000"));
 
-            Toast.makeText(activity, "night mode", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(activity, "night mode", Toast.LENGTH_SHORT).show();
         }
         else if(mode==false){
 //            activity.setTheme(R.style.whiteTheme);
@@ -123,7 +124,7 @@ public class ViewPagerAdapter extends PagerAdapter  {
             author.setTextColor(Color.parseColor("#8A8A8A"));
             container.setBackgroundColor(Color.parseColor("#ffffff"));
 
-            Toast.makeText(activity, "day mode", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(activity, "day mode", Toast.LENGTH_SHORT).show();
         }
 
 
@@ -147,6 +148,7 @@ public class ViewPagerAdapter extends PagerAdapter  {
             public void onClick(View view) {
 //                Toast.makeText(activity, ""+listItems.size(), Toast.LENGTH_SHORT).show();
                     i++;
+                Toast.makeText(activity, ""+i, Toast.LENGTH_SHORT).show();
 //                Handler handler = new Handler();
                 Runnable r = new Runnable() {
                     @Override
@@ -157,22 +159,37 @@ public class ViewPagerAdapter extends PagerAdapter  {
                 if (i == 1)
                 {
                     //Single click
-                    activity.setTheme(R.style.BlackTheme);
+//                    activity.setTheme(R.style.BlackTheme);
                     isNightModeEnabled = true;
-                        quotes.setTextColor(Color.parseColor("#ffffff"));
-                        author.setTextColor(Color.parseColor("#0092cc"));
-                        container.setBackgroundColor(Color.parseColor("#000000"));
+                    mode=true;
+                    Toast.makeText(activity, ""+mode, Toast.LENGTH_SHORT).show();
+                    Intent a=new Intent(activity, MainActivity.class);
+                    a.putExtra("mode",mode);
+                    a.putExtra("i",i);
+                    a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    activity.startActivity(a);
+                    activity.overridePendingTransition(0,0);
+//                        quotes.setTextColor(Color.parseColor("#ffffff"));
+//                        author.setTextColor(Color.parseColor("#0092cc"));
+//                        container.setBackgroundColor(Color.parseColor("#000000"));
                     Toast.makeText(activity, "Night Mode", Toast.LENGTH_SHORT).show();
                 }
                 else if (i == 2)
                 {
                     //Double click
-                    activity.setTheme(R.style.BlackTheme);
+//                    activity.setTheme(R.style.BlackTheme);
                     i = 0;
                     isNightModeEnabled=false;
-                    quotes.setTextColor(Color.parseColor("#000000"));
-                    author.setTextColor(Color.parseColor("#8A8A8A"));
-                    container.setBackgroundColor(Color.parseColor("#ffffff"));
+                    mode=false;
+                    Intent b=new Intent(activity, MainActivity.class);
+                    b.putExtra("mode",mode);
+                    b.putExtra("i",i);
+                    b.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    activity.startActivity(b);
+                    activity.overridePendingTransition(0,0);
+//                    quotes.setTextColor(Color.parseColor("#000000"));
+//                    author.setTextColor(Color.parseColor("#8A8A8A"));
+//                    container.setBackgroundColor(Color.parseColor("#ffffff"));
                     Toast.makeText(activity, "Day Mode", Toast.LENGTH_SHORT).show();
                 }
             }
