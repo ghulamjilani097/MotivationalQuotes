@@ -16,8 +16,9 @@ import java.util.Random;
 
 public class Splash extends AppCompatActivity {
 
-    Button day,night;
+    Button day,night,english,hindi;
     static int i;
+    static boolean language=false;
     static boolean mode=false;
     private String[] title = {
             "ENJOY EVERY MOMENT",
@@ -36,6 +37,8 @@ public class Splash extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
         day=(Button)findViewById(R.id.whitetheme);
+        english=(Button)findViewById(R.id.English);
+        hindi=(Button)findViewById(R.id.Hindi);
         night=(Button)findViewById(R.id.darktheme);
         day.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,6 +67,40 @@ public class Splash extends AppCompatActivity {
                 startActivity(b);
                 Splash.this.overridePendingTransition(0,0);
                 Toast.makeText(Splash.this, "Night", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        hindi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                i=0;
+                language=true;
+                mode=false;
+                Intent d=new Intent(getApplicationContext(), MainActivity.class);
+                d.putExtra("mode",mode);
+                d.putExtra("i",i);
+                d.putExtra("language",language);
+                d.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(d);
+                Splash.this.overridePendingTransition(0,0);
+                Toast.makeText(Splash.this, "Hindi", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        english.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                i=0;
+                language=false;
+                mode=false;
+                Intent d=new Intent(getApplicationContext(), MainActivity.class);
+                d.putExtra("mode",mode);
+                d.putExtra("i",i);
+                d.putExtra("language",language);
+                d.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(d);
+                Splash.this.overridePendingTransition(0,0);
+                Toast.makeText(Splash.this, "English", Toast.LENGTH_SHORT).show();
             }
         });
 

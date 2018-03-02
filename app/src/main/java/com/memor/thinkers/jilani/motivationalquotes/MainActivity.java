@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity
     private List<QuotesStructure> listItems;
     Sqlite sqlite;
     static boolean mode;
+    static boolean language;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -168,29 +169,41 @@ public class MainActivity extends AppCompatActivity
 
         }
         else if (id == R.id.whitetheme) {
-        i=0;
-        mode=false;
-            Intent a=new Intent(this, MainActivity.class);
-            a.putExtra("mode",mode);
-            a.putExtra("i",i);
-            a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(a);
-            overridePendingTransition(0,0);
+            if(i==0 && mode==false)
+            {
+                Toast.makeText(this, "Already In Day Mode", Toast.LENGTH_SHORT).show();
+            }
+
+            else {
+                i=0;
+                mode=false;
+                Intent a=new Intent(this, MainActivity.class);
+                a.putExtra("mode",mode);
+                a.putExtra("i",i);
+                a.putExtra("language",language);
+                a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(a);
+                overridePendingTransition(0,0);
+            }
+
 
         }
 
         else if (id == R.id.Black) {
-            i=1;
-            mode=true;
-            Intent a=new Intent(this, MainActivity.class);
-            a.putExtra("mode",mode);
-            a.putExtra("i",i);
-            a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(a);
-            overridePendingTransition(0,0);
 
-
-
+            if (i == 1 && mode == true) {
+                Toast.makeText(this, "Already In Night Mode", Toast.LENGTH_SHORT).show();
+            } else {
+                i = 1;
+                mode = true;
+                Intent a = new Intent(this, MainActivity.class);
+                a.putExtra("mode", mode);
+                a.putExtra("i", i);
+                a.putExtra("language",language);
+                a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(a);
+                overridePendingTransition(0, 0);
+            }
         }
 //        else if (id == R.id.nav_send) {
 //
@@ -211,12 +224,26 @@ public class MainActivity extends AppCompatActivity
 
     public void jsonparse()
     {
+
+        Bundle extra=getIntent().getExtras();
+        if(extra!=null){
+            mode=extra.getBoolean("mode");
+            i=extra.getInt("i");
+            language=extra.getBoolean("language");
+        }
 //        Toast.makeText(this, "HI I AM JILANI", Toast.LENGTH_SHORT).show();
         StringBuffer sbc = new StringBuffer();
         listItems=new ArrayList<>();
         BufferedReader br = null;
         try {
-            br = new BufferedReader(new InputStreamReader(getAssets().open("jilani.json")));
+            if(language)
+            {
+                br = new BufferedReader(new InputStreamReader(getAssets().open("jilanihindi.json")));
+            }
+            else {
+                br = new BufferedReader(new InputStreamReader(getAssets().open("jilani.json")));
+            }
+
             String temp;
             while ((temp = br.readLine()) != null)
                 sbc.append(temp);
@@ -244,12 +271,8 @@ public class MainActivity extends AppCompatActivity
                 listItems.add(item);
 //                Toast.makeText(this, ""+jsonObj.getString("quote"), Toast.LENGTH_SHORT).show();
             }
-            Bundle extra=getIntent().getExtras();
-            if(extra!=null){
-                mode=extra.getBoolean("mode");
-                i=extra.getInt("i");
-            }
-            viewPagerAdapter= new ViewPagerAdapter(listItems,MainActivity.this,mode,i);
+
+            viewPagerAdapter= new ViewPagerAdapter(listItems,MainActivity.this,mode,i,language);
             sqlite=new Sqlite(getApplicationContext());
             sqlite.jilani(MainActivity.this,listItems);
             viewPager.setAdapter(viewPagerAdapter);

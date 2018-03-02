@@ -47,17 +47,18 @@ public class ViewPagerAdapter extends PagerAdapter  {
     static ViewGroup container2=null;
     private boolean isNightModeEnabled = false;
     static int i;
-    static boolean mode;
+    static boolean mode,language;
 //    NotificationCompat.Builder notification;
 //    private static final int Unique=4562;
 
 
 
-    public ViewPagerAdapter(List<QuotesStructure> listItems, Activity activity,boolean mode, int i) {
+    public ViewPagerAdapter(List<QuotesStructure> listItems, Activity activity,boolean mode, int i, boolean language) {
         this.listItems = listItems;
         this.activity=activity;
         this.mode=mode;
         this.i=i;
+        this.language=language;
     }
 
 
@@ -166,6 +167,7 @@ public class ViewPagerAdapter extends PagerAdapter  {
                     Intent a=new Intent(activity, MainActivity.class);
                     a.putExtra("mode",mode);
                     a.putExtra("i",i);
+                    a.putExtra("language",language);
                     a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     activity.startActivity(a);
                     activity.overridePendingTransition(0,0);
@@ -184,6 +186,7 @@ public class ViewPagerAdapter extends PagerAdapter  {
                     Intent b=new Intent(activity, MainActivity.class);
                     b.putExtra("mode",mode);
                     b.putExtra("i",i);
+                    b.putExtra("language",language);
                     b.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     activity.startActivity(b);
                     activity.overridePendingTransition(0,0);
