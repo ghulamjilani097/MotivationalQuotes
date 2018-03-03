@@ -15,11 +15,12 @@ import android.widget.Toast;
 public class Settings extends Fragment
 {
     Switch theme,language2;
-    static Boolean mode,language;
+    static boolean mode,language;
     static int i;
-    boolean bc;
+    static boolean bc;
 
     View v;
+    static int j;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState)
     {
@@ -27,14 +28,24 @@ public class Settings extends Fragment
         theme=(Switch)v.findViewById(R.id.theme);
         language2=(Switch)v.findViewById(R.id.language);
 
-        Bundle b=getArguments();
-        Bundle c=getArguments();
+//        Bundle b=getArguments();
+//        Bundle c=getArguments();
         Bundle d=getArguments();
-        Bundle e=getArguments();
-        mode=b.getBoolean("mode");
-        i=c.getInt("i");
-        language=d.getBoolean("language");
-        bc=e.getBoolean("b");
+//        mode=c.getBoolean("mode");
+        i=d.getInt("i");
+//        language=d.getBoolean("language");
+//        bc=e.getBoolean("b");
+        Toast.makeText(getContext(), "sunita"+i, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), ""+mode, Toast.LENGTH_SHORT).show();
+
+        if(i==1)
+        {
+            theme.setChecked(true);
+        }
+        else
+        {
+            theme.setChecked(false);
+        }
 
         theme.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -43,12 +54,15 @@ public class Settings extends Fragment
                     if (i == 1 && mode == true) {
                 Toast.makeText(getContext(), "Already In Night Mode", Toast.LENGTH_SHORT).show();
             } else {
+//                        theme.setChecked(true);
+                        theme.setText("Night");
                 i = 1;
                 mode = true;
                 Intent a = new Intent(getContext(), MainActivity.class);
                 a.putExtra("mode", mode);
                 a.putExtra("i", i);
                 a.putExtra("b",bc);
+                a.putExtra("j",j);
 //                a.putExtra("language",language);
                 a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(a);

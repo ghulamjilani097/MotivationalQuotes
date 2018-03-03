@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity
     ImageView left,right;
     Toolbar toolbar;
     TextView text;
-    static int i;
+    static int i,j;
     ViewPager viewPager;
     ViewPagerAdapter viewPagerAdapter;
     private List<QuotesStructure> listItems;
@@ -171,16 +171,21 @@ public class MainActivity extends AppCompatActivity
 
         else if (id == R.id.settings) {
             fragment=new Settings();
-            Bundle b= new Bundle();
+//            Bundle b= new Bundle();
             Bundle c=new Bundle();
             Bundle d=new Bundle();
-            Bundle e=new Bundle();
-            b.putBoolean("mode",mode);
-            c.putInt("i",i);
-            d.putBoolean("language",language);
-            e.putBoolean("b",bc);
-            fragment.setArguments(e);
-            fragment.setArguments(b);
+//            Bundle e=new Bundle();
+//            Bundle extra1=getIntent().getExtras();
+//            bc=extra1.getBoolean("b");
+//            j=extra1.getInt("j");
+            c.putBoolean("mode",mode);
+            d.putInt("i",i);
+//            d.putBoolean("language",language);
+//            e.putInt("j",j);
+
+//            Toast.makeText(this, "ABCD"+bc, Toast.LENGTH_SHORT).show();
+//            fragment.setArguments(e);
+//            fragment.setArguments(b);
             fragment.setArguments(c);
             fragment.setArguments(d);
 
@@ -248,6 +253,7 @@ public class MainActivity extends AppCompatActivity
             mode=extra.getBoolean("mode");
             i=extra.getInt("i");
             bc=extra.getBoolean("b");
+            Toast.makeText(this, "jilani"+bc, Toast.LENGTH_SHORT).show();
             language=extra.getBoolean("language");
         }
 //        Toast.makeText(this, "HI I AM JILANI", Toast.LENGTH_SHORT).show();
