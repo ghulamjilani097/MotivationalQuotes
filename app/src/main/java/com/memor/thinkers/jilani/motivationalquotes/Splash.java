@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +18,7 @@ import java.util.Random;
 public class Splash extends AppCompatActivity {
 
     Button day,night,english,hindi;
+    Spinner lang;
     static int i;
     static boolean language=false;
     static boolean mode=false;
@@ -39,6 +41,8 @@ public class Splash extends AppCompatActivity {
 //        day=(Button)findViewById(R.id.whitetheme);
         english=(Button)findViewById(R.id.English);
         hindi=(Button)findViewById(R.id.Hindi);
+        lang=(Spinner) findViewById(R.id.spinner);
+
 //        night=(Button)findViewById(R.id.darktheme);
 //        day.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -103,6 +107,8 @@ public class Splash extends AppCompatActivity {
                 Toast.makeText(Splash.this, "English", Toast.LENGTH_SHORT).show();
             }
         });
+
+        lang.setSelection(1);
 
         TextView splash,quote;
         splash=(TextView)findViewById(R.id.txtsplash);

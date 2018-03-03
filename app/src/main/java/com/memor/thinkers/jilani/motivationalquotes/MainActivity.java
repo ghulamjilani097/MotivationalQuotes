@@ -171,65 +171,19 @@ public class MainActivity extends AppCompatActivity
 
         else if (id == R.id.settings) {
             fragment=new Settings();
-//            Bundle b= new Bundle();
-            Bundle c=new Bundle();
             Bundle d=new Bundle();
-//            Bundle e=new Bundle();
 //            Bundle extra1=getIntent().getExtras();
 //            bc=extra1.getBoolean("b");
 //            j=extra1.getInt("j");
-            c.putBoolean("mode",mode);
+            d.putBoolean("mode",mode);
             d.putInt("i",i);
-//            d.putBoolean("language",language);
+            d.putBoolean("language",language);
 //            e.putInt("j",j);
 
 //            Toast.makeText(this, "ABCD"+bc, Toast.LENGTH_SHORT).show();
-//            fragment.setArguments(e);
-//            fragment.setArguments(b);
-            fragment.setArguments(c);
             fragment.setArguments(d);
 
         }
-//        else if (id == R.id.whitetheme) {
-//            if(i==0 && mode==false)
-//            {
-//                Toast.makeText(this, "Already In Day Mode", Toast.LENGTH_SHORT).show();
-//            }
-//
-//            else {
-//                i=0;
-//                mode=false;
-//                Intent a=new Intent(this, MainActivity.class);
-//                a.putExtra("mode",mode);
-//                a.putExtra("i",i);
-//                a.putExtra("language",language);
-//                a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                startActivity(a);
-//                overridePendingTransition(0,0);
-//            }
-
-
-//        }
-
-//        else if (id == R.id.Black) {
-
-//            if (i == 1 && mode == true) {
-//                Toast.makeText(this, "Already In Night Mode", Toast.LENGTH_SHORT).show();
-//            } else {
-//                i = 1;
-//                mode = true;
-//                Intent a = new Intent(this, MainActivity.class);
-//                a.putExtra("mode", mode);
-//                a.putExtra("i", i);
-//                a.putExtra("language",language);
-//                a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                startActivity(a);
-//                overridePendingTransition(0, 0);
-//            }
-//        }
-//        else if (id == R.id.nav_send) {
-//
-//        }
 
 
         if(fragment!=null)
