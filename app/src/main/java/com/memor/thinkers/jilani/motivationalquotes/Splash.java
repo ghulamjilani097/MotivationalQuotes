@@ -36,39 +36,39 @@ public class Splash extends AppCompatActivity {
         getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_splash);
 
-        day=(Button)findViewById(R.id.whitetheme);
+//        day=(Button)findViewById(R.id.whitetheme);
         english=(Button)findViewById(R.id.English);
         hindi=(Button)findViewById(R.id.Hindi);
-        night=(Button)findViewById(R.id.darktheme);
-        day.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                i=0;
-                mode=false;
-                Intent c=new Intent(getApplicationContext(), MainActivity.class);
-                c.putExtra("mode",mode);
-                c.putExtra("i",i);
-                c.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(c);
-                Splash.this.overridePendingTransition(0,0);
-                Toast.makeText(Splash.this, "Day", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        night.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                i=1;
-                mode=true;
-                Intent b=new Intent(getApplicationContext(), MainActivity.class);
-                b.putExtra("mode",mode);
-                b.putExtra("i",i);
-                b.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(b);
-                Splash.this.overridePendingTransition(0,0);
-                Toast.makeText(Splash.this, "Night", Toast.LENGTH_SHORT).show();
-            }
-        });
+//        night=(Button)findViewById(R.id.darktheme);
+//        day.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                i=0;
+//                mode=false;
+//                Intent c=new Intent(getApplicationContext(), MainActivity.class);
+//                c.putExtra("mode",mode);
+//                c.putExtra("i",i);
+//                c.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                startActivity(c);
+//                Splash.this.overridePendingTransition(0,0);
+//                Toast.makeText(Splash.this, "Day", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//
+//        night.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                i=1;
+//                mode=true;
+//                Intent b=new Intent(getApplicationContext(), MainActivity.class);
+//                b.putExtra("mode",mode);
+//                b.putExtra("i",i);
+//                b.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                startActivity(b);
+//                Splash.this.overridePendingTransition(0,0);
+//                Toast.makeText(Splash.this, "Night", Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
         hindi.setOnClickListener(new View.OnClickListener() {
             @Override

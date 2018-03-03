@@ -40,24 +40,6 @@
         android:layout_centerInParent="true"/>
 
     <Button
-        android:id="@+id/darktheme"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/splashquote"
-        android:layout_marginLeft="70dp"
-        android:layout_marginTop="19dp"
-        android:text="Night Mode" />
-
-    <Button
-        android:id="@+id/whitetheme"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/splashquote"
-        android:layout_marginLeft="190dp"
-        android:layout_marginTop="19dp"
-        android:text="White Mode" />
-
-    <Button
         android:id="@+id/Hindi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

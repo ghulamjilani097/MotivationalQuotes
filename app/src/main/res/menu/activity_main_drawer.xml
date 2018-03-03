@@ -25,19 +25,23 @@
             android:id="@+id/Black"
             android:icon="@drawable/ic_menu_manage"
             android:title="Black" />
+        <item
+            android:id="@+id/settings"
+            android:icon="@drawable/moon"
+            android:title="Settings" />
     </group>
 
-    <!--<item android:title="">-->
-        <!--<menu>-->
-            <!--<item-->
-                <!--android:id="@+id/theme"-->
-                <!--android:icon="@drawable/moon"-->
-                <!--android:title="" />-->
-            <!--&lt;!&ndash;<item&ndash;&gt;-->
-                <!--&lt;!&ndash;&lt;!&ndash;android:id="@+id/nav_send"&ndash;&gt;&ndash;&gt;-->
-                <!--&lt;!&ndash;&lt;!&ndash;android:icon="@drawable/ic_menu_send"&ndash;&gt;&ndash;&gt;-->
-                <!--&lt;!&ndash;&lt;!&ndash;android:title="Send" />&ndash;&gt;&ndash;&gt;-->
-        <!--</menu>-->
-    <!--</item>-->
+   <!-- <item android:title="Language">
+        <menu>
+            <item
+                android:id="@+id/english"
+                android:icon="@drawable/moon"
+                android:title="White" />
+            <item
+                android:id="@+id/hindi"
+                android:icon="@drawable/ic_menu_manage"
+                android:title="Black" />
+        </menu>
+    </item>-->
 
 </menu>

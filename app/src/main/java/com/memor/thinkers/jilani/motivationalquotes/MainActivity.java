@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity
     ViewPagerAdapter viewPagerAdapter;
     private List<QuotesStructure> listItems;
     Sqlite sqlite;
-    static boolean mode;
+    static boolean mode,bc;
     static boolean language;
 
     @Override
@@ -168,46 +168,64 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
 
         }
-        else if (id == R.id.whitetheme) {
-            if(i==0 && mode==false)
-            {
-                Toast.makeText(this, "Already In Day Mode", Toast.LENGTH_SHORT).show();
-            }
 
-            else {
-                i=0;
-                mode=false;
-                Intent a=new Intent(this, MainActivity.class);
-                a.putExtra("mode",mode);
-                a.putExtra("i",i);
-                a.putExtra("language",language);
-                a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(a);
-                overridePendingTransition(0,0);
-            }
-
+        else if (id == R.id.settings) {
+            fragment=new Settings();
+            Bundle b= new Bundle();
+            Bundle c=new Bundle();
+            Bundle d=new Bundle();
+            Bundle e=new Bundle();
+            b.putBoolean("mode",mode);
+            c.putInt("i",i);
+            d.putBoolean("language",language);
+            e.putBoolean("b",bc);
+            fragment.setArguments(e);
+            fragment.setArguments(b);
+            fragment.setArguments(c);
+            fragment.setArguments(d);
 
         }
+//        else if (id == R.id.whitetheme) {
+//            if(i==0 && mode==false)
+//            {
+//                Toast.makeText(this, "Already In Day Mode", Toast.LENGTH_SHORT).show();
+//            }
+//
+//            else {
+//                i=0;
+//                mode=false;
+//                Intent a=new Intent(this, MainActivity.class);
+//                a.putExtra("mode",mode);
+//                a.putExtra("i",i);
+//                a.putExtra("language",language);
+//                a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                startActivity(a);
+//                overridePendingTransition(0,0);
+//            }
 
-        else if (id == R.id.Black) {
 
-            if (i == 1 && mode == true) {
-                Toast.makeText(this, "Already In Night Mode", Toast.LENGTH_SHORT).show();
-            } else {
-                i = 1;
-                mode = true;
-                Intent a = new Intent(this, MainActivity.class);
-                a.putExtra("mode", mode);
-                a.putExtra("i", i);
-                a.putExtra("language",language);
-                a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(a);
-                overridePendingTransition(0, 0);
-            }
-        }
+//        }
+
+//        else if (id == R.id.Black) {
+
+//            if (i == 1 && mode == true) {
+//                Toast.makeText(this, "Already In Night Mode", Toast.LENGTH_SHORT).show();
+//            } else {
+//                i = 1;
+//                mode = true;
+//                Intent a = new Intent(this, MainActivity.class);
+//                a.putExtra("mode", mode);
+//                a.putExtra("i", i);
+//                a.putExtra("language",language);
+//                a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                startActivity(a);
+//                overridePendingTransition(0, 0);
+//            }
+//        }
 //        else if (id == R.id.nav_send) {
 //
 //        }
+
 
         if(fragment!=null)
         {
@@ -229,6 +247,7 @@ public class MainActivity extends AppCompatActivity
         if(extra!=null){
             mode=extra.getBoolean("mode");
             i=extra.getInt("i");
+            bc=extra.getBoolean("b");
             language=extra.getBoolean("language");
         }
 //        Toast.makeText(this, "HI I AM JILANI", Toast.LENGTH_SHORT).show();
