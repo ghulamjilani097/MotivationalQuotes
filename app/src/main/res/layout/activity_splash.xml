@@ -63,7 +63,6 @@
         android:layout_below="@id/splashquote"
         android:layout_marginTop="70dp"
         android:spinnerMode="dialog"
-        android:visibility="gone"
         android:layout_centerInParent="true"
         android:id="@+id/spinner">
     </Spinner>

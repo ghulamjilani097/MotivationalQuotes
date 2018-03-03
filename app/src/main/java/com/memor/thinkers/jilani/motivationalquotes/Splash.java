@@ -18,7 +18,7 @@ import android.widget.Toast;
 
 import java.util.Random;
 
-public class Splash extends AppCompatActivity {
+public class Splash extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
     Button day,night,english,hindi;
     Spinner lang;
@@ -35,7 +35,7 @@ public class Splash extends AppCompatActivity {
             "IF NOT NOW, THEN WHEN?"
     };
 
-    String choose[]={"Hindi","English"};
+    String choose[]={"Select Language","Hindi","English"};
     ArrayAdapter<String> arrayAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,130 +45,61 @@ public class Splash extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
 //        day=(Button)findViewById(R.id.whitetheme);
-        english=(Button)findViewById(R.id.language);
+//        english=(Button)findViewById(R.id.language);
         //hindi=(Button)findViewById(R.id.Hindi);
         lang=(Spinner) findViewById(R.id.spinner);
 
+
         arrayAdapter=new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,choose);
         lang.setAdapter(arrayAdapter);
-        lang.setPrompt("Choose Your Language");
-        //lang.setSelection(0,false);
+//        lang.setPrompt("Choose Your Language");
 
-        //lang.setSelected(false);  // must
-        //lang.setSelection(0,true);  //must
+//        lang.setSelection(0,false);
+        lang.setSelected(false);  // must
+//        lang.setSelection(0,true);  //must
+        lang.setOnItemSelectedListener(this);
 
-        english.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String data = lang.getSelectedItem().toString();
-                if(data.equals("English"))
-                {
-                    i=0;
-                    language=false;
-                    mode=false;
-                    Intent d=new Intent(getApplicationContext(), MainActivity.class);
-                    d.putExtra("mode",mode);
-                    d.putExtra("i",i);
-                    d.putExtra("language",language);
-                    d.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(d);
-                    Splash.this.overridePendingTransition(0,0);
-                    Toast.makeText(Splash.this, "English", Toast.LENGTH_SHORT).show();
-                }
-                else if(data.equals("Hindi")){
-                    i=0;
-                    language=true;
-                    mode=false;
-                    Intent d=new Intent(getApplicationContext(), MainActivity.class);
-                    d.putExtra("mode",mode);
-                    d.putExtra("i",i);
-                    d.putExtra("language",language);
-                    d.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(d);
-                    Splash.this.overridePendingTransition(0,0);
-                    Toast.makeText(Splash.this, "Hindi", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-/*
 
-        lang.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-*/
-
-//        night=(Button)findViewById(R.id.darktheme);
-//        day.setOnClickListener(new View.OnClickListener() {
+//        lang.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 //            @Override
-//            public void onClick(View view) {
-//                i=0;
-//                mode=false;
-//                Intent c=new Intent(getApplicationContext(), MainActivity.class);
-//                c.putExtra("mode",mode);
-//                c.putExtra("i",i);
-//                c.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                startActivity(c);
-//                Splash.this.overridePendingTransition(0,0);
-//                Toast.makeText(Splash.this, "Day", Toast.LENGTH_SHORT).show();
+//            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+//                String data = adapterView.getItemAtPosition(i).toString();
+//                if(data.equals("English"))
+//                {
+//                    i=0;
+//                    language=false;
+//                    mode=false;
+//                    Intent d=new Intent(getApplicationContext(), MainActivity.class);
+//                    d.putExtra("mode",mode);
+//                    d.putExtra("i",i);
+//                    d.putExtra("language",language);
+//                    d.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                    startActivity(d);
+//                    Splash.this.overridePendingTransition(0,0);
+//                    Toast.makeText(Splash.this, "English", Toast.LENGTH_SHORT).show();
+//                }
+//                else if(data.equals("Hindi")){
+//                    i=0;
+//                    language=true;
+//                    mode=false;
+//                    Intent d=new Intent(getApplicationContext(), MainActivity.class);
+//                    d.putExtra("mode",mode);
+//                    d.putExtra("i",i);
+//                    d.putExtra("language",language);
+//                    d.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                    startActivity(d);
+//                    Splash.this.overridePendingTransition(0,0);
+//                    Toast.makeText(Splash.this, "Hindi", Toast.LENGTH_SHORT).show();
+//                }
 //            }
-//        });
 //
-//        night.setOnClickListener(new View.OnClickListener() {
 //            @Override
-//            public void onClick(View view) {
-//                i=1;
-//                mode=true;
-//                Intent b=new Intent(getApplicationContext(), MainActivity.class);
-//                b.putExtra("mode",mode);
-//                b.putExtra("i",i);
-//                b.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                startActivity(b);
-//                Splash.this.overridePendingTransition(0,0);
-//                Toast.makeText(Splash.this, "Night", Toast.LENGTH_SHORT).show();
+//            public void onNothingSelected(AdapterView<?> adapterView) {
+//
+////                Toast.makeText(Splash.this, "Jilani", Toast.LENGTH_SHORT).show();
+//
 //            }
 //        });
-
-        /*hindi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                i=0;
-                language=true;
-                mode=false;
-                Intent d=new Intent(getApplicationContext(), MainActivity.class);
-                d.putExtra("mode",mode);
-                d.putExtra("i",i);
-                d.putExtra("language",language);
-                d.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(d);
-                Splash.this.overridePendingTransition(0,0);
-                Toast.makeText(Splash.this, "Hindi", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        english.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                i=0;
-                language=false;
-                mode=false;
-                Intent d=new Intent(getApplicationContext(), MainActivity.class);
-                d.putExtra("mode",mode);
-                d.putExtra("i",i);
-                d.putExtra("language",language);
-                d.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(d);
-                Splash.this.overridePendingTransition(0,0);
-                Toast.makeText(Splash.this, "English", Toast.LENGTH_SHORT).show();
-            }
-        });*/
 
 
         TextView splash,quote;
@@ -202,5 +133,46 @@ public class Splash extends AppCompatActivity {
 //            }
 //        };
 //        thread.start();
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+        String data = adapterView.getItemAtPosition(i).toString();
+        lang.setSelected(false);
+        Toast.makeText(this, ""+data, Toast.LENGTH_SHORT).show();
+        if(data.equals("English"))
+        {
+            i=0;
+            language=false;
+            mode=false;
+            Intent d=new Intent(getApplicationContext(), MainActivity.class);
+            d.putExtra("mode",mode);
+            d.putExtra("i",i);
+            d.putExtra("language",language);
+            d.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(d);
+            Splash.this.overridePendingTransition(0,0);
+            Toast.makeText(Splash.this, "English", Toast.LENGTH_SHORT).show();
+        }
+        else if(data.equals("Hindi")){
+            i=0;
+            language=true;
+            mode=false;
+            Intent d=new Intent(getApplicationContext(), MainActivity.class);
+            d.putExtra("mode",mode);
+            d.putExtra("i",i);
+            d.putExtra("language",language);
+            d.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(d);
+            Splash.this.overridePendingTransition(0,0);
+            Toast.makeText(Splash.this, "Hindi", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
     }
 }
