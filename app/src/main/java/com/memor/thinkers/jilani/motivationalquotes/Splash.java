@@ -45,20 +45,21 @@ public class Splash extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
 //        day=(Button)findViewById(R.id.whitetheme);
-        //english=(Button)findViewById(R.id.English);
+        english=(Button)findViewById(R.id.language);
         //hindi=(Button)findViewById(R.id.Hindi);
         lang=(Spinner) findViewById(R.id.spinner);
-        lang.setPrompt("Choose Your Language");
+
         arrayAdapter=new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,choose);
         lang.setAdapter(arrayAdapter);
+        lang.setPrompt("Choose Your Language");
         //lang.setSelection(0,false);
 
-        lang.setSelected(false);  // must
-        lang.setSelection(0,true);  //must
+        //lang.setSelected(false);  // must
+        //lang.setSelection(0,true);  //must
 
-        lang.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        english.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+            public void onClick(View view) {
                 String data = lang.getSelectedItem().toString();
                 if(data.equals("English"))
                 {
@@ -88,12 +89,21 @@ public class Splash extends AppCompatActivity {
                     Toast.makeText(Splash.this, "Hindi", Toast.LENGTH_SHORT).show();
                 }
             }
+        });
+/*
+
+        lang.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+            }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
         });
+*/
 
 //        night=(Button)findViewById(R.id.darktheme);
 //        day.setOnClickListener(new View.OnClickListener() {
