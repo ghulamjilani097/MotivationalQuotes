@@ -16,6 +16,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 public class Splash extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
@@ -48,8 +51,6 @@ public class Splash extends AppCompatActivity implements AdapterView.OnItemSelec
 //        english=(Button)findViewById(R.id.language);
         //hindi=(Button)findViewById(R.id.Hindi);
         lang=(Spinner) findViewById(R.id.spinner);
-
-
         arrayAdapter=new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,choose);
         lang.setAdapter(arrayAdapter);
 //        lang.setPrompt("Choose Your Language");
@@ -167,6 +168,11 @@ public class Splash extends AppCompatActivity implements AdapterView.OnItemSelec
             startActivity(d);
             Splash.this.overridePendingTransition(0,0);
             Toast.makeText(Splash.this, "Hindi", Toast.LENGTH_SHORT).show();
+        }
+
+        else if(data.equals("Select Language"))
+        {
+            Toast.makeText(this, "Please Select a Language to Continue", Toast.LENGTH_SHORT).show();
         }
 
     }
