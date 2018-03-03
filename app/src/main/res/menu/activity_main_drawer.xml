@@ -3,11 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_home_black_24dp"
             android:title="Home" />
         <item
             android:id="@+id/nav_gallery"
@@ -17,31 +16,9 @@
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Rate us" />
-        <!--<item-->
-            <!--android:id="@+id/whitetheme"-->
-            <!--android:icon="@drawable/moon"-->
-            <!--android:title="White" />-->
-        <!--<item-->
-            <!--android:id="@+id/Black"-->
-            <!--android:icon="@drawable/ic_menu_manage"-->
-            <!--android:title="Black" />-->
         <item
             android:id="@+id/settings"
-            android:icon="@drawable/moon"
+            android:icon="@drawable/ic_settings_black_24dp"
             android:title="Settings" />
     </group>
-
-   <!-- <item android:title="Language">
-        <menu>
-            <item
-                android:id="@+id/english"
-                android:icon="@drawable/moon"
-                android:title="White" />
-            <item
-                android:id="@+id/hindi"
-                android:icon="@drawable/ic_menu_manage"
-                android:title="Black" />
-        </menu>
-    </item>-->
-
 </menu>

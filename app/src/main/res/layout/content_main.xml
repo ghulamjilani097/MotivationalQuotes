@@ -10,38 +10,6 @@
     android:background="#ffffff"
     android:id="@+id/content_main">
 
-
-
-    <!--<FrameLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:id="@+id/screenarea">-->
-
-
-    <!--<android.support.v4.view.ViewPager-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:id="@+id/viewpager">-->
-    <!--</android.support.v4.view.ViewPager>-->
-
-    <!--<ImageView-->
-        <!--android:layout_width="25dp"-->
-        <!--android:layout_height="25dp"-->
-        <!--android:src="@drawable/left_arrow"-->
-        <!--app:layout_constraintStart_toStartOf="@id/viewpager"-->
-        <!--android:layout_centerInParent="true"-->
-        <!--android:layout_alignLeft="@id/viewpager"-->
-        <!--android:id="@+id/left_arrow"/>-->
-
-    <!--<ImageView-->
-        <!--android:layout_width="25dp"-->
-        <!--android:layout_height="25dp"-->
-        <!--android:src="@drawable/right_arrow"-->
-        <!--android:layout_centerInParent="true"-->
-        <!--android:layout_alignRight="@id/viewpager"-->
-        <!--android:id="@+id/right_arrow"/>-->
-    <!--</FrameLayout>-->
-
     <fragment
         android:id="@+id/mainfragment"
         android:name="com.memor.thinkers.jilani.motivationalquotes.Home"

@@ -21,9 +21,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-public class Splash extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
-
-    Button day,night,english,hindi;
+public class Splash extends AppCompatActivity implements AdapterView.OnItemSelectedListener
+{
     Spinner lang;
     static int i;
     static boolean language=false;
@@ -47,61 +46,10 @@ public class Splash extends AppCompatActivity implements AdapterView.OnItemSelec
         getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_splash);
 
-//        day=(Button)findViewById(R.id.whitetheme);
-//        english=(Button)findViewById(R.id.language);
-        //hindi=(Button)findViewById(R.id.Hindi);
         lang=(Spinner) findViewById(R.id.spinner);
         arrayAdapter=new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,choose);
         lang.setAdapter(arrayAdapter);
-//        lang.setPrompt("Choose Your Language");
-
-//        lang.setSelection(0,false);
-        lang.setSelected(false);  // must
-//        lang.setSelection(0,true);  //must
         lang.setOnItemSelectedListener(this);
-
-
-//        lang.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-//                String data = adapterView.getItemAtPosition(i).toString();
-//                if(data.equals("English"))
-//                {
-//                    i=0;
-//                    language=false;
-//                    mode=false;
-//                    Intent d=new Intent(getApplicationContext(), MainActivity.class);
-//                    d.putExtra("mode",mode);
-//                    d.putExtra("i",i);
-//                    d.putExtra("language",language);
-//                    d.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                    startActivity(d);
-//                    Splash.this.overridePendingTransition(0,0);
-//                    Toast.makeText(Splash.this, "English", Toast.LENGTH_SHORT).show();
-//                }
-//                else if(data.equals("Hindi")){
-//                    i=0;
-//                    language=true;
-//                    mode=false;
-//                    Intent d=new Intent(getApplicationContext(), MainActivity.class);
-//                    d.putExtra("mode",mode);
-//                    d.putExtra("i",i);
-//                    d.putExtra("language",language);
-//                    d.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                    startActivity(d);
-//                    Splash.this.overridePendingTransition(0,0);
-//                    Toast.makeText(Splash.this, "Hindi", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> adapterView) {
-//
-////                Toast.makeText(Splash.this, "Jilani", Toast.LENGTH_SHORT).show();
-//
-//            }
-//        });
-
 
         TextView splash,quote;
         splash=(TextView)findViewById(R.id.txtsplash);
@@ -112,28 +60,8 @@ public class Splash extends AppCompatActivity implements AdapterView.OnItemSelec
 
         Random randGen = new Random();
         int rando = randGen.nextInt(5);
-
-                String nextValue = title[randGen.nextInt(title.length)];
-
-
+        String nextValue = title[randGen.nextInt(title.length)];
         quote.setText(nextValue);
-
-//        Thread thread=new Thread()
-//        {
-//            @Override
-//            public void run() {
-//                try {
-//                    sleep(3000);
-//                    Intent intent= new Intent(getApplicationContext(),MainActivity.class);
-//                    intent.putExtra("mode",mode);
-//                    startActivity(intent);
-//                    finish();
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        };
-//        thread.start();
     }
 
     @Override
@@ -153,6 +81,7 @@ public class Splash extends AppCompatActivity implements AdapterView.OnItemSelec
             d.putExtra("language",language);
             d.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(d);
+            finish();
             Splash.this.overridePendingTransition(0,0);
             Toast.makeText(Splash.this, "English", Toast.LENGTH_SHORT).show();
         }
@@ -166,15 +95,14 @@ public class Splash extends AppCompatActivity implements AdapterView.OnItemSelec
             d.putExtra("language",language);
             d.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(d);
+            finish();
             Splash.this.overridePendingTransition(0,0);
             Toast.makeText(Splash.this, "Hindi", Toast.LENGTH_SHORT).show();
         }
-
         else if(data.equals("Select Language"))
         {
             Toast.makeText(this, "Please Select a Language to Continue", Toast.LENGTH_SHORT).show();
         }
-
     }
 
     @Override

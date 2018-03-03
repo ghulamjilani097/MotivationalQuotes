@@ -19,7 +19,7 @@ import android.widget.Toast;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class About extends Fragment {
+public class About extends Fragment implements Helper{
 
     static boolean mode;
     TextView about;
@@ -52,11 +52,19 @@ public class About extends Fragment {
         }
 
         Toast.makeText(activity, ""+mode, Toast.LENGTH_SHORT).show();
-
-
         return root;
+    }
 
-           }
-
+        @Override
+        public boolean onBackPressed() {
+            /*if (myCondition) {
+                //action not popBackStack
+                return true;
+            } else {
+                return false;
+            }*/
+            Toast.makeText(getContext(), "About", Toast.LENGTH_SHORT).show();
+            return true;
+        }
 
 }
