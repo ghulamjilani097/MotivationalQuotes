@@ -10,12 +10,12 @@
             android:title="Home" />
         <item
             android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/about"
             android:title="About" />
         <item
             android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Rate us" />
+            android:title="Rate us"
+            android:icon="@drawable/rate"/>
         <item
             android:id="@+id/settings"
             android:icon="@drawable/ic_settings_black_24dp"
