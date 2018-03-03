@@ -39,7 +39,7 @@
         android:textSize="20sp"
         android:layout_centerInParent="true"/>
 
-    <Button
+    <!--<Button
         android:id="@+id/Hindi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -55,16 +55,16 @@
         android:layout_marginLeft="200dp"
         android:layout_below="@+id/splashquote"
         android:layout_marginTop="10dp"
-        android:text="English" />
+        android:text="English" />-->
 
     <Spinner
         android:layout_width="200dp"
         android:layout_height="35dp"
         android:layout_below="@id/splashquote"
         android:layout_marginTop="70dp"
+        android:spinnerMode="dialog"
         android:layout_centerInParent="true"
-        android:id="@+id/spinner"
-        android:entries="@array/array_name">
+        android:id="@+id/spinner">
     </Spinner>
 
 </RelativeLayout>

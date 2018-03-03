@@ -1,5 +1,6 @@
 package com.memor.thinkers.jilani.motivationalquotes;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Handler;
@@ -8,6 +9,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -31,6 +34,9 @@ public class Splash extends AppCompatActivity {
             "EVERY MOMENT MATTERS",
             "IF NOT NOW, THEN WHEN?"
     };
+
+    String choose[]={"Hindi","English"};
+    ArrayAdapter<String> arrayAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,9 +45,55 @@ public class Splash extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
 //        day=(Button)findViewById(R.id.whitetheme);
-        english=(Button)findViewById(R.id.English);
-        hindi=(Button)findViewById(R.id.Hindi);
+        //english=(Button)findViewById(R.id.English);
+        //hindi=(Button)findViewById(R.id.Hindi);
         lang=(Spinner) findViewById(R.id.spinner);
+        lang.setPrompt("Choose Your Language");
+        arrayAdapter=new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,choose);
+        lang.setAdapter(arrayAdapter);
+        //lang.setSelection(0,false);
+
+        lang.setSelected(false);  // must
+        lang.setSelection(0,true);  //must
+
+        lang.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String data = lang.getSelectedItem().toString();
+                if(data.equals("English"))
+                {
+                    i=0;
+                    language=false;
+                    mode=false;
+                    Intent d=new Intent(getApplicationContext(), MainActivity.class);
+                    d.putExtra("mode",mode);
+                    d.putExtra("i",i);
+                    d.putExtra("language",language);
+                    d.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(d);
+                    Splash.this.overridePendingTransition(0,0);
+                    Toast.makeText(Splash.this, "English", Toast.LENGTH_SHORT).show();
+                }
+                else if(data.equals("Hindi")){
+                    i=0;
+                    language=true;
+                    mode=false;
+                    Intent d=new Intent(getApplicationContext(), MainActivity.class);
+                    d.putExtra("mode",mode);
+                    d.putExtra("i",i);
+                    d.putExtra("language",language);
+                    d.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(d);
+                    Splash.this.overridePendingTransition(0,0);
+                    Toast.makeText(Splash.this, "Hindi", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
 //        night=(Button)findViewById(R.id.darktheme);
 //        day.setOnClickListener(new View.OnClickListener() {
@@ -74,7 +126,7 @@ public class Splash extends AppCompatActivity {
 //            }
 //        });
 
-        hindi.setOnClickListener(new View.OnClickListener() {
+        /*hindi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 i=0;
@@ -106,9 +158,8 @@ public class Splash extends AppCompatActivity {
                 Splash.this.overridePendingTransition(0,0);
                 Toast.makeText(Splash.this, "English", Toast.LENGTH_SHORT).show();
             }
-        });
+        });*/
 
-        lang.setSelection(1);
 
         TextView splash,quote;
         splash=(TextView)findViewById(R.id.txtsplash);
