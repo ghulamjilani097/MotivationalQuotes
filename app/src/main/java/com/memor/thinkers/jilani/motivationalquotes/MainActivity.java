@@ -75,6 +75,9 @@ public class MainActivity extends AppCompatActivity
         ImageView imag=(ImageView)findViewById(R.id.theme);
          text=(TextView)findViewById(R.id.quotes);
 
+         NavigationView nv=(NavigationView)findViewById(R.id.nav_view);
+         nv.setItemIconTintList(null);
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -110,35 +113,57 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onBackPressed()
-    {
+    public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_about);
-        if (!(fragment instanceof Helper) || !((Helper) fragment).onBackPressed()) {
-            super.onBackPressed();
-            Toast.makeText(this, "MainActivity", Toast.LENGTH_SHORT).show();
-        }
 
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            if (doubleBackToExitPressedOnce) {
-                super.onBackPressed();
-                return;
-            }
+//            Toast.makeText(this, getSupportActionBar().getTitle(), Toast.LENGTH_SHORT).show();
 
-            this.doubleBackToExitPressedOnce = true;
-            Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
 
-            new Handler().postDelayed(new Runnable() {
+            if (getSupportActionBar().getTitle() == "About Us") {
+//                getSupportFragmentManager().popBackStack();
+                Intent a = new Intent(getApplicationContext(), MainActivity.class);
+//                Toast.makeText(this, "About", Toast.LENGTH_SHORT).show();
+                a.putExtra("mode",mode);
+                a.putExtra("i",i);
+                a.putExtra("language",language);
+                a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(a);
+                finish();
+                overridePendingTransition(0,0);
 
-                @Override
-                public void run() {
-                    doubleBackToExitPressedOnce=false;
+            } else if (getSupportActionBar().getTitle() == "Settings") {
+                Intent a = new Intent(getApplicationContext(), MainActivity.class);
+//                Toast.makeText(this, "Setting", Toast.LENGTH_SHORT).show();
+                a.putExtra("mode",mode);
+                a.putExtra("i",i);
+                a.putExtra("language",language);
+                a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(a);
+                finish();
+                overridePendingTransition(0,0);
+            } else
+                {
+                if (doubleBackToExitPressedOnce)
+                {
+                    super.onBackPressed();
+                    return;
                 }
-            }, 2000);
 
+                this.doubleBackToExitPressedOnce = true;
+                Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+                new Handler().postDelayed(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        doubleBackToExitPressedOnce = false;
+                    }
+                }, 2000);
+            }
 //            super.onBackPressed();
+
         }
     }
 
@@ -149,15 +174,22 @@ public class MainActivity extends AppCompatActivity
         Fragment fragment=null;
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.Home) {
 
-            Intent i=new Intent(this, MainActivity.class);
-            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(i);
-            this.overridePendingTransition(0,0);
+            if(getSupportActionBar().getTitle()=="Motivational Quotes")
+            {
+                Toast.makeText(this, "Already in Home", Toast.LENGTH_SHORT).show();
+            }
+            else {
+                Intent i = new Intent(this, MainActivity.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i);
+                finish();
+                this.overridePendingTransition(0, 0);
+            }
 
 
-        } else if (id == R.id.nav_gallery)
+        } else if (id == R.id.About)
 
         {
             fragment=new About();
@@ -165,7 +197,7 @@ public class MainActivity extends AppCompatActivity
             b.putBoolean("mode",mode);
             fragment.setArguments(b);
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.Rateus) {
             Intent intent = new Intent(Intent.ACTION_VIEW);
             intent.setData(Uri.parse("https://play.google.com/store/apps/dev?id=5700313618786177705"));
             startActivity(intent);
@@ -175,15 +207,9 @@ public class MainActivity extends AppCompatActivity
         else if (id == R.id.settings) {
             fragment=new Settings();
             Bundle d=new Bundle();
-//            Bundle extra1=getIntent().getExtras();
-//            bc=extra1.getBoolean("b");
-//            j=extra1.getInt("j");
             d.putBoolean("mode",mode);
             d.putInt("i",i);
             d.putBoolean("language",language);
-//            e.putInt("j",j);
-
-//            Toast.makeText(this, "ABCD"+bc, Toast.LENGTH_SHORT).show();
             fragment.setArguments(d);
 
         }
@@ -194,6 +220,7 @@ public class MainActivity extends AppCompatActivity
             FragmentManager fm=getSupportFragmentManager();
             FragmentTransaction transaction = fm.beginTransaction();
             transaction.replace(R.id.mainfragment, fragment);
+//            transaction.addToBackStack("abc");
             transaction.commit();
         }
 
@@ -210,7 +237,7 @@ public class MainActivity extends AppCompatActivity
             mode=extra.getBoolean("mode");
             i=extra.getInt("i");
             bc=extra.getBoolean("b");
-            Toast.makeText(this, "jilani"+bc, Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "jilani"+bc, Toast.LENGTH_SHORT).show();
             language=extra.getBoolean("language");
         }
 //        Toast.makeText(this, "HI I AM JILANI", Toast.LENGTH_SHORT).show();
@@ -289,4 +316,5 @@ public class MainActivity extends AppCompatActivity
             alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
         }
     }
+
 }

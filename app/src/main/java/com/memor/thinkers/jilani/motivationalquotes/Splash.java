@@ -69,7 +69,7 @@ public class Splash extends AppCompatActivity implements AdapterView.OnItemSelec
 
         String data = adapterView.getItemAtPosition(i).toString();
         lang.setSelected(false);
-        Toast.makeText(this, ""+data, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, ""+data, Toast.LENGTH_SHORT).show();
         if(data.equals("English"))
         {
             i=0;

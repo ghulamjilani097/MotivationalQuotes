@@ -100,6 +100,14 @@ public class ViewPagerAdapter extends PagerAdapter  {
         Typeface typeFace1 = Typeface.createFromAsset(activity.getAssets(), "Barlow-SemiBold.ttf");
         author.setTypeface(typeFace1);
 
+//        if(language)
+//        {
+//            Typeface typeFace3 = Typeface.createFromAsset(activity.getAssets(), "Kruti_Dev_010.ttf");
+//            quotes.setTypeface(typeFace3);
+//            Typeface typeFace4 = Typeface.createFromAsset(activity.getAssets(), "Barlow-SemiBold.ttf");
+//            author.setTypeface(typeFace4);
+//        }
+
         quotes.setText(quotesStructure.getQuotes());
         author.setText(quotesStructure.getAuthor());
 
@@ -109,6 +117,7 @@ public class ViewPagerAdapter extends PagerAdapter  {
             author.setTextColor(Color.parseColor("#0092cc"));
             container2.setBackgroundColor(Color.parseColor("#000000"));
         }*/
+        
 
         if(mode==true){
 //            activity.setTheme(R.style.BlackTheme);
@@ -149,7 +158,7 @@ public class ViewPagerAdapter extends PagerAdapter  {
             public void onClick(View view) {
 //                Toast.makeText(activity, ""+listItems.size(), Toast.LENGTH_SHORT).show();
                     i++;
-                Toast.makeText(activity, ""+i, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(activity, ""+i, Toast.LENGTH_SHORT).show();
 //                Handler handler = new Handler();
                 Runnable r = new Runnable() {
                     @Override
@@ -163,13 +172,14 @@ public class ViewPagerAdapter extends PagerAdapter  {
 //                    activity.setTheme(R.style.BlackTheme);
                     isNightModeEnabled = true;
                     mode=true;
-                    Toast.makeText(activity, ""+mode, Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(activity, ""+mode, Toast.LENGTH_SHORT).show();
                     Intent a=new Intent(activity, MainActivity.class);
                     a.putExtra("mode",mode);
                     a.putExtra("i",i);
                     a.putExtra("language",language);
                     a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     activity.startActivity(a);
+                    activity.finish();
                     activity.overridePendingTransition(0,0);
 //                        quotes.setTextColor(Color.parseColor("#ffffff"));
 //                        author.setTextColor(Color.parseColor("#0092cc"));
@@ -189,6 +199,7 @@ public class ViewPagerAdapter extends PagerAdapter  {
                     b.putExtra("language",language);
                     b.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     activity.startActivity(b);
+                    activity.finish();
                     activity.overridePendingTransition(0,0);
 //                    quotes.setTextColor(Color.parseColor("#000000"));
 //                    author.setTextColor(Color.parseColor("#8A8A8A"));

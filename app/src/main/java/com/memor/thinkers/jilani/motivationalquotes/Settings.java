@@ -2,6 +2,7 @@ package com.memor.thinkers.jilani.motivationalquotes;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
+import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.Toast;
 
@@ -18,6 +20,7 @@ public class Settings extends Fragment
     static boolean mode,language;
     static int i;
     static boolean bc;
+    LinearLayout frag;
 
     View v;
     static int j;
@@ -25,35 +28,45 @@ public class Settings extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState)
     {
         v= inflater.inflate(R.layout.fragment_settings, container, false);
+        MainActivity activity=(MainActivity) getActivity();
+
         theme=(Switch)v.findViewById(R.id.theme);
         language2=(Switch)v.findViewById(R.id.language);
+        frag=(LinearLayout)v.findViewById(R.id.frag_settings);
+
+        activity.getSupportActionBar().setTitle("Settings");
 
         Bundle d=getArguments();
         mode=d.getBoolean("mode");
         i=d.getInt("i");
         language=d.getBoolean("language");
-        Toast.makeText(getContext(), "sunita"+i, Toast.LENGTH_SHORT).show();
-        Toast.makeText(getContext(), "theme"+mode, Toast.LENGTH_SHORT).show();
-        Toast.makeText(getContext(), "lang"+language, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getContext(), "sunita"+i, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getContext(), "theme"+mode, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getContext(), "lang"+language, Toast.LENGTH_SHORT).show();
 
         if(i==1)
         {
             theme.setChecked(true);
             theme.setText("Night");
+            frag.setBackgroundColor(Color.parseColor("#000000"));
+            theme.setTextColor(Color.parseColor("#ffffff"));
+            language2.setTextColor(Color.parseColor("#ffffff"));
         }
         else
         {
             theme.setChecked(false);
-            theme.setText("Day");
+//            theme.setText("Day");
         }
 
         if(language)
         {
             language2.setChecked(true);
+            language2.setText("Hindi");
         }
         else
         {
             language2.setChecked(false);
+//            language2.setText("English");
         }
 
 
@@ -75,6 +88,7 @@ public class Settings extends Fragment
                 a.putExtra("language",language);
                 a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(a);
+                getActivity().finish();
                 getActivity().overridePendingTransition(0, 0);
 
         }
@@ -92,6 +106,7 @@ public class Settings extends Fragment
                     a.putExtra("language",language);
                     a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(a);
+                    getActivity().finish();
                     getActivity().overridePendingTransition(0, 0);
                 }
 
@@ -121,6 +136,7 @@ public class Settings extends Fragment
                         d.putExtra("language",language);
                         d.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(d);
+                        getActivity().finish();
                         getActivity().overridePendingTransition(0,0);
 
 
@@ -152,6 +168,7 @@ public class Settings extends Fragment
                         d.putExtra("language",language);
                         d.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(d);
+                        getActivity().finish();
                         getActivity().overridePendingTransition(0,0);
                         Toast.makeText(getContext(), "English", Toast.LENGTH_SHORT).show();
                     }
