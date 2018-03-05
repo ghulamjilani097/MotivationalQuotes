@@ -117,7 +117,7 @@ public class ViewPagerAdapter extends PagerAdapter  {
             author.setTextColor(Color.parseColor("#0092cc"));
             container2.setBackgroundColor(Color.parseColor("#000000"));
         }*/
-        
+
 
         if(mode==true){
 //            activity.setTheme(R.style.BlackTheme);
