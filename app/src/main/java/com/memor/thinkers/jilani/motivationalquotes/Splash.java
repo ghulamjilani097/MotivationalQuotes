@@ -1,9 +1,6 @@
 package com.memor.thinkers.jilani.motivationalquotes;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -13,17 +10,9 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
-//import com.sdsmdg.harjot.rotatingtext.RotatingTextWrapper;
-//import com.sdsmdg.harjot.rotatingtext.models.Rotatable;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Random;
 
 public class Splash extends AppCompatActivity implements AdapterView.OnItemSelectedListener
@@ -59,6 +48,7 @@ public class Splash extends AppCompatActivity implements AdapterView.OnItemSelec
         if(sharedPref.getLaguage()) {
             Toast.makeText(this, "Helllo", Toast.LENGTH_SHORT).show();
             lang.setVisibility(View.GONE);
+            findViewById(R.id.textView).setVisibility(View.GONE);
             startActivity(new Intent(this,MainActivity.class));
             finish();
         }
@@ -94,36 +84,13 @@ public class Splash extends AppCompatActivity implements AdapterView.OnItemSelec
 
         if(data.equals("English"))
         {
-            i=0;
             language=false;
-            mode=false;
-            isLanguage=true;
-            sharedPref.setLanguage(isLanguage);
-            Intent d=new Intent(getApplicationContext(), MainActivity.class);
-            d.putExtra("mode",mode);
-            d.putExtra("i",i);
-            d.putExtra("language",language);
-            d.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(d);
-            finish();
-            Splash.this.overridePendingTransition(0,0);
+            shabana();
             Toast.makeText(Splash.this, "English", Toast.LENGTH_SHORT).show();
         }
         else if(data.equals("हिंदी")){
-            i=0;
             language=true;
-            mode=false;
-            isLanguage=true;
-            sharedPref.setLanguage(isLanguage);
-            Intent d=new Intent(getApplicationContext(), MainActivity.class);
-            d.putExtra("mode",mode);
-            d.putExtra("i",i);
-            d.putExtra("language",language);
-            d.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(d);
-            finish();
-            Splash.this.overridePendingTransition(0,0);
-            Toast.makeText(Splash.this, "हिंदी", Toast.LENGTH_SHORT).show();
+            shabana();
         }
         else if(data.equals("Select Language"))
         {
@@ -133,6 +100,22 @@ public class Splash extends AppCompatActivity implements AdapterView.OnItemSelec
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
+
+    }
+
+    public void shabana(){
+        mode=false;
+        i=0;
+        isLanguage=true;
+        sharedPref.setLanguage(isLanguage);
+        Intent d=new Intent(getApplicationContext(), MainActivity.class);
+        d.putExtra("mode",mode);
+        d.putExtra("i",i);
+        d.putExtra("language",language);
+        d.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(d);
+        finish();
+        Splash.this.overridePendingTransition(0,0);
 
     }
 }

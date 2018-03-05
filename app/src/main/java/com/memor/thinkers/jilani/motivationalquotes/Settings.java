@@ -1,9 +1,7 @@
 package com.memor.thinkers.jilani.motivationalquotes;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -73,14 +71,7 @@ public class Settings extends Fragment
                         theme.setText("Night");
                         i = 1;
                         mode = true;
-                        Intent a = new Intent(getContext(), MainActivity.class);
-                        a.putExtra("mode", mode);
-                        a.putExtra("i", i);
-                        a.putExtra("language",language);
-                        a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(a);
-                        getActivity().finish();
-                        getActivity().overridePendingTransition(0, 0);
+                        shabana();
                     }
                 }
                 else
@@ -92,14 +83,7 @@ public class Settings extends Fragment
                         i = 0;
                         theme.setText("Day");
                         mode = false;
-                        Intent a = new Intent(getContext(), MainActivity.class);
-                        a.putExtra("mode", mode);
-                        a.putExtra("i", i);
-                        a.putExtra("language",language);
-                        a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(a);
-                        getActivity().finish();
-                        getActivity().overridePendingTransition(0, 0);
+                        shabana();
                      }
                 }
             }
@@ -116,14 +100,7 @@ public class Settings extends Fragment
                     }
                     else{
                         language=true;
-                        Intent d=new Intent(getContext(), MainActivity.class);
-                        d.putExtra("mode",mode);
-                        d.putExtra("i",i);
-                        d.putExtra("language",language);
-                        d.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(d);
-                        getActivity().finish();
-                        getActivity().overridePendingTransition(0,0);
+                        shabana();
                     }
                 }
                 else
@@ -135,19 +112,23 @@ public class Settings extends Fragment
                     else
                     {
                         language=false;
-                        Intent d=new Intent(getContext(), MainActivity.class);
-                        d.putExtra("mode",mode);
-                        d.putExtra("i",i);
-                        d.putExtra("language",language);
-                        d.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(d);
-                        getActivity().finish();
-                        getActivity().overridePendingTransition(0,0);
+                        shabana();
                         Toast.makeText(getContext(), "English", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
         });
         return v;
+    }
+
+    public void shabana(){
+        Intent d=new Intent(getContext(), MainActivity.class);
+        d.putExtra("mode",mode);
+        d.putExtra("i",i);
+        d.putExtra("language",language);
+        d.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(d);
+        getActivity().finish();
+        getActivity().overridePendingTransition(0,0);
     }
 }

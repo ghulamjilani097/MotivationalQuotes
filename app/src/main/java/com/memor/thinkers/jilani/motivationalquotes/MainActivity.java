@@ -1,22 +1,13 @@
 package com.memor.thinkers.jilani.motivationalquotes;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatDelegate;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -24,28 +15,18 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collections;
-import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Random;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
@@ -56,7 +37,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     ViewPager viewPager;
     ViewPagerAdapter viewPagerAdapter;
     private List<QuotesStructure> listItems;
-    Sqlite sqlite;
     static boolean mode,bc;
     static boolean language;
     boolean doubleBackToExitPressedOnce = false;
@@ -116,25 +96,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         else
         {
             if (getSupportActionBar().getTitle() == "About Us") {
-                Intent a = new Intent(getApplicationContext(), MainActivity.class);
-                a.putExtra("mode",mode);
-                a.putExtra("i",i);
-                a.putExtra("language",language);
-                a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(a);
-                finish();
-                overridePendingTransition(0,0);
-
+                shabana();
             }
             else if (getSupportActionBar().getTitle() == "Settings") {
-                Intent a = new Intent(getApplicationContext(), MainActivity.class);
-                a.putExtra("mode",mode);
-                a.putExtra("i",i);
-                a.putExtra("language",language);
-                a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(a);
-                finish();
-                overridePendingTransition(0,0);
+                shabana();
             }
             else
             {
@@ -262,8 +227,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 listItems.add(item);
             }
             viewPagerAdapter= new ViewPagerAdapter(listItems,MainActivity.this,mode,i,language);
-            sqlite=new Sqlite(getApplicationContext());
-            sqlite.jilani(MainActivity.this,listItems);
             viewPager.setAdapter(viewPagerAdapter);
              viewPager.setOffscreenPageLimit(1);
 
@@ -277,5 +240,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onRestart();
         finish();
         startActivity(getIntent());
+        overridePendingTransition(0,0);
+    }
+
+    public void shabana(){
+        Intent a = new Intent(getApplicationContext(), MainActivity.class);
+        a.putExtra("mode",mode);
+        a.putExtra("i",i);
+        a.putExtra("language",language);
+        a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(a);
+        finish();
+        overridePendingTransition(0,0);
     }
 }

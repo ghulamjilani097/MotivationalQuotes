@@ -25,13 +25,7 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".AlarmReceiver" >
-            <intent-filter>
-                <action android:name="alarm" />
-            </intent-filter>
-        </receiver>
-
-            <!--android:process=":remote"/>-->
+        <!--android:process=":remote"/>-->
 
         <activity android:name=".Splash"
             android:screenOrientation="portrait">
