@@ -19,11 +19,9 @@ public class Settings extends Fragment
     Switch theme,language2;
     static boolean mode,language;
     static int i;
-    static boolean bc;
     LinearLayout frag;
-
     View v;
-    static int j;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState)
     {
@@ -39,10 +37,6 @@ public class Settings extends Fragment
         Bundle d=getArguments();
         mode=d.getBoolean("mode");
         i=d.getInt("i");
-        language=d.getBoolean("language");
-//        Toast.makeText(getContext(), "sunita"+i, Toast.LENGTH_SHORT).show();
-//        Toast.makeText(getContext(), "theme"+mode, Toast.LENGTH_SHORT).show();
-//        Toast.makeText(getContext(), "lang"+language, Toast.LENGTH_SHORT).show();
 
         if(i==1)
         {
@@ -55,7 +49,6 @@ public class Settings extends Fragment
         else
         {
             theme.setChecked(false);
-//            theme.setText("Day");
         }
 
         if(language)
@@ -66,55 +59,51 @@ public class Settings extends Fragment
         else
         {
             language2.setChecked(false);
-//            language2.setText("English");
         }
-
-
 
         theme.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton,boolean bc) {
                 if(bc){
                     if (i == 1 && mode == true) {
-                Toast.makeText(getContext(), "Already In Night Mode", Toast.LENGTH_SHORT).show();
-            } else {
-//                        theme.setChecked(true);
+                    Toast.makeText(getContext(), "Already In Night Mode", Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                    {
                         theme.setText("Night");
-                i = 1;
-                mode = true;
-                Intent a = new Intent(getContext(), MainActivity.class);
-                a.putExtra("mode", mode);
-                a.putExtra("i", i);
-                a.putExtra("language",language);
-                a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(a);
-                getActivity().finish();
-                getActivity().overridePendingTransition(0, 0);
-
-        }
+                        i = 1;
+                        mode = true;
+                        Intent a = new Intent(getContext(), MainActivity.class);
+                        a.putExtra("mode", mode);
+                        a.putExtra("i", i);
+                        a.putExtra("language",language);
+                        a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(a);
+                        getActivity().finish();
+                        getActivity().overridePendingTransition(0, 0);
+                    }
                 }
-                else{
-                if (i == 0 && mode == false) {
-                    Toast.makeText(getContext(), "Already In Day Mode", Toast.LENGTH_SHORT).show();
-                } else {
-                    i = 0;
-                    theme.setText("Day");
-                    mode = false;
-                    Intent a = new Intent(getContext(), MainActivity.class);
-                    a.putExtra("mode", mode);
-                    a.putExtra("i", i);
-                    a.putExtra("language",language);
-                    a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(a);
-                    getActivity().finish();
-                    getActivity().overridePendingTransition(0, 0);
-                }
-
+                else
+                {
+                    if (i == 0 && mode == false) {
+                        Toast.makeText(getContext(), "Already In Day Mode", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        i = 0;
+                        theme.setText("Day");
+                        mode = false;
+                        Intent a = new Intent(getContext(), MainActivity.class);
+                        a.putExtra("mode", mode);
+                        a.putExtra("i", i);
+                        a.putExtra("language",language);
+                        a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(a);
+                        getActivity().finish();
+                        getActivity().overridePendingTransition(0, 0);
+                     }
                 }
             }
         });
-
-
 
         language2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -125,11 +114,8 @@ public class Settings extends Fragment
                     {
                         Toast.makeText(getContext(), "Already In Hindi", Toast.LENGTH_SHORT).show();
                     }
-
                     else{
-//                        i=0;
                         language=true;
-//                    mode=false;
                         Intent d=new Intent(getContext(), MainActivity.class);
                         d.putExtra("mode",mode);
                         d.putExtra("i",i);
@@ -138,19 +124,8 @@ public class Settings extends Fragment
                         startActivity(d);
                         getActivity().finish();
                         getActivity().overridePendingTransition(0,0);
-
-
-//                        Bundle bd=new Bundle();
-//                        bd.putInt("i",i);
-//                        bd.putBoolean("mode",mode);
-//                        bd.putBoolean("language",language);
-//                        MainActivity mb=(MainActivity) getActivity();
-
-
                     }
-//
                 }
-
                 else
                 {
                     if(language=false)
@@ -159,9 +134,7 @@ public class Settings extends Fragment
                     }
                     else
                     {
-//                        i=0;
                         language=false;
-//                    mode=false;
                         Intent d=new Intent(getContext(), MainActivity.class);
                         d.putExtra("mode",mode);
                         d.putExtra("i",i);
@@ -172,7 +145,6 @@ public class Settings extends Fragment
                         getActivity().overridePendingTransition(0,0);
                         Toast.makeText(getContext(), "English", Toast.LENGTH_SHORT).show();
                     }
-
                 }
             }
         });

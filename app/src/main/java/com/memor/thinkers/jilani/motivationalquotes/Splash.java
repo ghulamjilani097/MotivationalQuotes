@@ -30,7 +30,6 @@ public class Splash extends AppCompatActivity implements AdapterView.OnItemSelec
 {
     Spinner lang;
     static int i;
-//    static boolean Default1;
     static boolean language=false;
     static boolean mode=false;
     private String[] title = {
@@ -39,10 +38,11 @@ public class Splash extends AppCompatActivity implements AdapterView.OnItemSelec
             "IF NOT NOW, THEN WHEN?", "SMILE", "GOOD VIBES ONLY", "WORK HARD DREAM BIG", "PROVE THEM WRONG",
             "NEVER STOP DREAMING", "SHINE LIKE THE STARS", "COLLECT MOMENTS, NOT THINGS", "LIFE IS A GIFT"
     };
-
-
     String choose[]={"Select Language","English","हिंदी"};
     ArrayAdapter<String> arrayAdapter;
+    SharedPref sharedPref;
+    boolean isLanguage=false;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,29 +50,18 @@ public class Splash extends AppCompatActivity implements AdapterView.OnItemSelec
         getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_splash);
 
-
+        sharedPref=new SharedPref(Splash.this);
         lang=(Spinner) findViewById(R.id.spinner);
         arrayAdapter=new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,choose);
         lang.setAdapter(arrayAdapter);
         lang.setOnItemSelectedListener(this);
 
-//        if(Default1)
-//        {
-//            lang.setVisibility(View.INVISIBLE);
-//            final Handler handler = new Handler();
-//            handler.postDelayed(new Runnable() {
-//                @Override
-//                public void run() {
-//                    Intent d=new Intent(getApplicationContext(), MainActivity.class);
-//                    SharedPreferences settings = getSharedPreferences("Default1", 0);
-//                    Default1= settings.getBoolean("firstRun", true);
-//                    finish();
-//                    startActivity(d);
-//                }
-//            }, 3000);
-//
-//
-//        }
+        if(sharedPref.getLaguage()) {
+            Toast.makeText(this, "Helllo", Toast.LENGTH_SHORT).show();
+            lang.setVisibility(View.GONE);
+            startActivity(new Intent(this,MainActivity.class));
+            finish();
+        }
 
         final TextView splash,quote;
         splash=(TextView)findViewById(R.id.txtsplash);
@@ -95,41 +84,25 @@ public class Splash extends AppCompatActivity implements AdapterView.OnItemSelec
                 handler.postDelayed(this, 5000);
             }
         }, 5000);
-
-
-
-
-//        RotatingTextWrapper rotatingTextWrapper = (RotatingTextWrapper) findViewById(R.id.splashquote);
-//        rotatingTextWrapper.setSize(35);
-//
-//        Rotatable rotatable = new Rotatable(Color.parseColor("#FFA036"), 1000, nextValue);
-//        rotatable.setSize(35);
-//        rotatable.setAnimationDuration(500);
-//
-//        rotatingTextWrapper.setContent("?", rotatable);
-
     }
 
-
     @Override
-    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l)
+    {
         String data = adapterView.getItemAtPosition(i).toString();
         lang.setSelected(false);
-//        Toast.makeText(this, ""+data, Toast.LENGTH_SHORT).show();
+
         if(data.equals("English"))
         {
             i=0;
-//            Default1=true;
-//            SharedPreferences settings = getSharedPreferences("Default1", 0);
-//            Default1= settings.getBoolean("firstRun", true);
             language=false;
             mode=false;
+            isLanguage=true;
+            sharedPref.setLanguage(isLanguage);
             Intent d=new Intent(getApplicationContext(), MainActivity.class);
             d.putExtra("mode",mode);
             d.putExtra("i",i);
             d.putExtra("language",language);
-//            d.putExtra("Default",Default1);
             d.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(d);
             finish();
@@ -140,6 +113,8 @@ public class Splash extends AppCompatActivity implements AdapterView.OnItemSelec
             i=0;
             language=true;
             mode=false;
+            isLanguage=true;
+            sharedPref.setLanguage(isLanguage);
             Intent d=new Intent(getApplicationContext(), MainActivity.class);
             d.putExtra("mode",mode);
             d.putExtra("i",i);

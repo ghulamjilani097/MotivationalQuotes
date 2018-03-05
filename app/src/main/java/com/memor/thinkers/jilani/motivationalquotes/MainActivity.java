@@ -47,9 +47,8 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Random;
 
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
-
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
+{
     ImageView left,right;
     Toolbar toolbar;
     TextView text;
@@ -73,7 +72,7 @@ public class MainActivity extends AppCompatActivity
         viewPager=(ViewPager)findViewById(R.id.viewpager);
 
         ImageView imag=(ImageView)findViewById(R.id.theme);
-         text=(TextView)findViewById(R.id.quotes);
+        text=(TextView)findViewById(R.id.quotes);
 
          NavigationView nv=(NavigationView)findViewById(R.id.nav_view);
          nv.setItemIconTintList(null);
@@ -87,11 +86,8 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-
-
         left=(ImageView)findViewById(R.id.left_arrow);
         right=(ImageView)findViewById(R.id.right_arrow);
-
 
         left.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,24 +104,19 @@ public class MainActivity extends AppCompatActivity
         });
 
         jsonparse();
-//        handleNotification();
-
     }
 
     @Override
-    public void onBackPressed() {
+    public void onBackPressed()
+    {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        } else {
-//            Toast.makeText(this, getSupportActionBar().getTitle(), Toast.LENGTH_SHORT).show();
-
-
+        }
+        else
+        {
             if (getSupportActionBar().getTitle() == "About Us") {
-//                getSupportFragmentManager().popBackStack();
                 Intent a = new Intent(getApplicationContext(), MainActivity.class);
-//                Toast.makeText(this, "About", Toast.LENGTH_SHORT).show();
                 a.putExtra("mode",mode);
                 a.putExtra("i",i);
                 a.putExtra("language",language);
@@ -134,9 +125,9 @@ public class MainActivity extends AppCompatActivity
                 finish();
                 overridePendingTransition(0,0);
 
-            } else if (getSupportActionBar().getTitle() == "Settings") {
+            }
+            else if (getSupportActionBar().getTitle() == "Settings") {
                 Intent a = new Intent(getApplicationContext(), MainActivity.class);
-//                Toast.makeText(this, "Setting", Toast.LENGTH_SHORT).show();
                 a.putExtra("mode",mode);
                 a.putExtra("i",i);
                 a.putExtra("language",language);
@@ -144,8 +135,9 @@ public class MainActivity extends AppCompatActivity
                 startActivity(a);
                 finish();
                 overridePendingTransition(0,0);
-            } else
-                {
+            }
+            else
+            {
                 if (doubleBackToExitPressedOnce)
                 {
                     super.onBackPressed();
@@ -162,8 +154,6 @@ public class MainActivity extends AppCompatActivity
                     }
                 }, 2000);
             }
-//            super.onBackPressed();
-
         }
     }
 
@@ -174,8 +164,8 @@ public class MainActivity extends AppCompatActivity
         Fragment fragment=null;
         int id = item.getItemId();
 
-        if (id == R.id.Home) {
-
+        if (id == R.id.Home)
+        {
             if(getSupportActionBar().getTitle()=="Motivational Quotes")
             {
                 Toast.makeText(this, "Already in Home", Toast.LENGTH_SHORT).show();
@@ -187,24 +177,21 @@ public class MainActivity extends AppCompatActivity
                 finish();
                 this.overridePendingTransition(0, 0);
             }
-
-
-        } else if (id == R.id.About)
-
+        }
+        else if (id == R.id.About)
         {
             fragment=new About();
             Bundle b= new Bundle();
             b.putBoolean("mode",mode);
             fragment.setArguments(b);
-
-        } else if (id == R.id.Rateus) {
+        }
+        else if (id == R.id.Rateus) {
             Intent intent = new Intent(Intent.ACTION_VIEW);
             intent.setData(Uri.parse("https://play.google.com/store/apps/dev?id=5700313618786177705"));
             startActivity(intent);
-
         }
-
-        else if (id == R.id.settings) {
+        else if (id == R.id.settings)
+        {
             fragment=new Settings();
             Bundle d=new Bundle();
             d.putBoolean("mode",mode);
@@ -213,14 +200,11 @@ public class MainActivity extends AppCompatActivity
             fragment.setArguments(d);
 
         }
-
-
         if(fragment!=null)
         {
             FragmentManager fm=getSupportFragmentManager();
             FragmentTransaction transaction = fm.beginTransaction();
             transaction.replace(R.id.mainfragment, fragment);
-//            transaction.addToBackStack("abc");
             transaction.commit();
         }
 
@@ -237,10 +221,8 @@ public class MainActivity extends AppCompatActivity
             mode=extra.getBoolean("mode");
             i=extra.getInt("i");
             bc=extra.getBoolean("b");
-//            Toast.makeText(this, "jilani"+bc, Toast.LENGTH_SHORT).show();
             language=extra.getBoolean("language");
         }
-//        Toast.makeText(this, "HI I AM JILANI", Toast.LENGTH_SHORT).show();
         StringBuffer sbc = new StringBuffer();
         listItems=new ArrayList<>();
         BufferedReader br = null;
@@ -273,19 +255,17 @@ public class MainActivity extends AppCompatActivity
             JSONObject jsonObjMain = new JSONObject(myjsonstring);
             JSONArray jsonArray = jsonObjMain.getJSONArray("allquotes");
 
-            for (int i =0; i < jsonArray.length(); i++) {
-
+            for (int i =0; i < jsonArray.length(); i++)
+            {
                 JSONObject jsonObj = jsonArray.getJSONObject(i);
                 QuotesStructure item= new QuotesStructure(jsonObj.getString("quote"),jsonObj.getString("author"));
                 listItems.add(item);
-//                Toast.makeText(this, ""+jsonObj.getString("quote"), Toast.LENGTH_SHORT).show();
             }
-
             viewPagerAdapter= new ViewPagerAdapter(listItems,MainActivity.this,mode,i,language);
             sqlite=new Sqlite(getApplicationContext());
             sqlite.jilani(MainActivity.this,listItems);
             viewPager.setAdapter(viewPagerAdapter);
-          viewPager.setOffscreenPageLimit(1);
+             viewPager.setOffscreenPageLimit(1);
 
         }catch (JSONException e){
             e.printStackTrace();
@@ -298,23 +278,4 @@ public class MainActivity extends AppCompatActivity
         finish();
         startActivity(getIntent());
     }
-
-    private void handleNotification() {
-
-        long t = System.currentTimeMillis();
-//        jsonparse();
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY,01);
-        calendar.set(Calendar.MINUTE, 11);
-        calendar.set(Calendar.SECOND, 00);
-
-        if (t <= calendar.getTimeInMillis()) {
-            Intent alarmIntent = new Intent(MainActivity.this, AlarmReceiver.class);
-            alarmIntent.setAction("alarm");
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-            AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
-        }
-    }
-
 }

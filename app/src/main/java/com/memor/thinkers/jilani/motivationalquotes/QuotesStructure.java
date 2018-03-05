@@ -1,13 +1,7 @@
 package com.memor.thinkers.jilani.motivationalquotes;
 
-import java.lang.ref.SoftReference;
-
-/**
- * Created by Jilani on 13-01-2018.
- */
-
-public class QuotesStructure {
-
+public class QuotesStructure
+{
     private String quotes;
     private String author;
 
