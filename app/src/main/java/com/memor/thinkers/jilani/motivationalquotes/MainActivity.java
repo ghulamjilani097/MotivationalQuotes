@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity
         });
 
         jsonparse();
-        handleNotification();
+//        handleNotification();
 
     }
 
