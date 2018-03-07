@@ -46,11 +46,17 @@ public class Splash extends AppCompatActivity implements AdapterView.OnItemSelec
         lang.setOnItemSelectedListener(this);
 
         if(sharedPref.getLaguage()) {
-            Toast.makeText(this, "Helllo", Toast.LENGTH_SHORT).show();
+
             lang.setVisibility(View.GONE);
             findViewById(R.id.textView).setVisibility(View.GONE);
-            startActivity(new Intent(this,MainActivity.class));
-            finish();
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    //Do something after 100ms
+                    startActivity(new Intent(Splash.this,MainActivity.class));
+                    finish();
+                }
+            }, 3000);
         }
 
         final TextView splash,quote;
