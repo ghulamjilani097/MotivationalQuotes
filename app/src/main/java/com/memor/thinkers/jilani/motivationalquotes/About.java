@@ -30,6 +30,7 @@ public class About extends Fragment
         if(mode==true)
         {
             about.setTextColor(Color.parseColor("#ffffff"));
+
             aboutframe.setBackgroundColor(Color.parseColor("#000000"));
         }
         return root;
