@@ -72,6 +72,14 @@ public class Settings extends Fragment
                         i = 1;
                         mode = true;
                         shabana();
+                        Intent a = new Intent(getContext(), MainActivity.class);
+                        a.putExtra("mode", mode);
+                        a.putExtra("i", i);
+                        a.putExtra("language",language);
+                        a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(a);
+                        getActivity().finish();
+                        getActivity().overridePendingTransition(0, 0);
                     }
                 }
                 else
@@ -84,6 +92,14 @@ public class Settings extends Fragment
                         theme.setText("Day");
                         mode = false;
                         shabana();
+                        Intent a = new Intent(getContext(), MainActivity.class);
+                        a.putExtra("mode", mode);
+                        a.putExtra("i", i);
+                        a.putExtra("language",language);
+                        a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(a);
+                        getActivity().finish();
+                        getActivity().overridePendingTransition(0, 0);
                      }
                 }
             }
@@ -101,6 +117,14 @@ public class Settings extends Fragment
                     else{
                         language=true;
                         shabana();
+                        Intent d=new Intent(getContext(), MainActivity.class);
+                        d.putExtra("mode",mode);
+                        d.putExtra("i",i);
+                        d.putExtra("language",language);
+                        d.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(d);
+                        getActivity().finish();
+                        getActivity().overridePendingTransition(0,0);
                     }
                 }
                 else
@@ -113,6 +137,14 @@ public class Settings extends Fragment
                     {
                         language=false;
                         shabana();
+                        Intent d=new Intent(getContext(), MainActivity.class);
+                        d.putExtra("mode",mode);
+                        d.putExtra("i",i);
+                        d.putExtra("language",language);
+                        d.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(d);
+                        getActivity().finish();
+                        getActivity().overridePendingTransition(0,0);
                         Toast.makeText(getContext(), "English", Toast.LENGTH_SHORT).show();
                     }
                 }

@@ -46,7 +46,6 @@ public class Splash extends AppCompatActivity implements AdapterView.OnItemSelec
         lang.setOnItemSelectedListener(this);
 
         if(sharedPref.getLaguage()) {
-
             lang.setVisibility(View.GONE);
             findViewById(R.id.textView).setVisibility(View.GONE);
             new Handler().postDelayed(new Runnable() {
@@ -57,6 +56,10 @@ public class Splash extends AppCompatActivity implements AdapterView.OnItemSelec
                     finish();
                 }
             }, 3000);
+            Toast.makeText(this, "Helllo", Toast.LENGTH_SHORT).show();
+            lang.setVisibility(View.GONE);
+            startActivity(new Intent(this,MainActivity.class));
+            finish();
         }
 
         final TextView splash,quote;
@@ -92,11 +95,36 @@ public class Splash extends AppCompatActivity implements AdapterView.OnItemSelec
         {
             language=false;
             shabana();
+            i=0;
+            language=false;
+            mode=false;
+            isLanguage=true;
+            sharedPref.setLanguage(isLanguage);
+            Intent d=new Intent(getApplicationContext(), MainActivity.class);
+            d.putExtra("mode",mode);
+            d.putExtra("i",i);
+            d.putExtra("language",language);
+            d.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(d);
+            finish();
+            Splash.this.overridePendingTransition(0,0);
             Toast.makeText(Splash.this, "English", Toast.LENGTH_SHORT).show();
         }
         else if(data.equals("हिंदी")){
             language=true;
             shabana();
+            mode=false;
+            isLanguage=true;
+            sharedPref.setLanguage(isLanguage);
+            Intent d=new Intent(getApplicationContext(), MainActivity.class);
+            d.putExtra("mode",mode);
+            d.putExtra("i",i);
+            d.putExtra("language",language);
+            d.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(d);
+            finish();
+            Splash.this.overridePendingTransition(0,0);
+            Toast.makeText(Splash.this, "हिंदी", Toast.LENGTH_SHORT).show();
         }
         else if(data.equals("Select Language"))
         {
