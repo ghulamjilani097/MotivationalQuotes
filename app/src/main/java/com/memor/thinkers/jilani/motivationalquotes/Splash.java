@@ -56,10 +56,10 @@ public class Splash extends AppCompatActivity implements AdapterView.OnItemSelec
                     finish();
                 }
             }, 3000);
-//            Toast.makeText(this, "Helllo", Toast.LENGTH_SHORT).show();
-            lang.setVisibility(View.GONE);
+           // Toast.makeText(this, "Helllo", Toast.LENGTH_SHORT).show();
+            /*lang.setVisibility(View.GONE);
             startActivity(new Intent(this,MainActivity.class));
-            finish();
+            finish();*/
         }
 
         final TextView splash,quote;
