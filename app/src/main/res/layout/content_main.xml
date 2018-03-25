@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.memor.thinkers.jilani.motivationalquotes.MainActivity"
+    tools:context="com.twofolksresearch.motivationalquotes.MainActivity"
     tools:showIn="@layout/app_bar_main"
     android:background="#ffffff"
     android:id="@+id/content_main">
 
     <fragment
         android:id="@+id/mainfragment"
-        android:name="com.memor.thinkers.jilani.motivationalquotes.Home"
+        android:name="com.twofolksresearch.motivationalquotes.Home"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"

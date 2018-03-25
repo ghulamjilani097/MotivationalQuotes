@@ -9,7 +9,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.memor.thinkers.jilani.motivationalquotes.About"
+    tools:context="com.twofolksresearch.motivationalquotes.About"
     android:id="@+id/fragment_about"
     android:background="#ffffff"
     android:clickable="true">
