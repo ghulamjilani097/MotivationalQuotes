@@ -6,8 +6,8 @@ android {
         applicationId "com.memor.thinkers.jilani.motivationalquotes"
         minSdkVersion 19
         targetSdkVersion 21
-        versionCode 4
-        versionName "1.0.1"
+        versionCode 5
+        versionName "1.0.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
