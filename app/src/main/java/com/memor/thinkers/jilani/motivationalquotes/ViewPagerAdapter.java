@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class ViewPagerAdapter extends PagerAdapter  {
 
 
 
-    public ViewPagerAdapter(List<QuotesStructure> listItems, Activity activity,boolean mode, int i, boolean language) {
+    public ViewPagerAdapter(List<QuotesStructure> listItems, Activity activity, boolean mode, int i, boolean language) {
         this.listItems = listItems;
         this.activity=activity;
         this.mode=mode;
@@ -84,9 +85,9 @@ public class ViewPagerAdapter extends PagerAdapter  {
         share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+                Intent sharingIntent = new Intent(Intent.ACTION_SEND);
                 sharingIntent.setType("text/plain");
-                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, quotesStructure.getQuotes()+"\n-"+quotesStructure.getAuthor());
+                sharingIntent.putExtra(Intent.EXTRA_TEXT, quotesStructure.getQuotes()+"\n-"+quotesStructure.getAuthor());
                 activity.startActivity(Intent.createChooser(sharingIntent,"Share Via"));
             }
         });
