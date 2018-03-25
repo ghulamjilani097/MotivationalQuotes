@@ -1,4 +1,4 @@
-package com.twofolksresearch.motivationalquotes;
+package com.memor.thinkers.jilani.motivationalquotes;
 
 import android.content.Intent;
 import android.graphics.Typeface;

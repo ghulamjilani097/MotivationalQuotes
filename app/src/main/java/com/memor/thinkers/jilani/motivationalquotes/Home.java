@@ -1,4 +1,4 @@
-package com.twofolksresearch.motivationalquotes;
+package com.memor.thinkers.jilani.motivationalquotes;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

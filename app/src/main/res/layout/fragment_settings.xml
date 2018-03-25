@@ -7,7 +7,7 @@
     android:background="#ffffff"
     android:clickable="true"
     android:id="@+id/frag_settings"
-    tools:context="com.twofolksresearch.motivationalquotes.Settings">
+    tools:context="com.memor.thinkers.jilani.motivationalquotes.Settings">
 
     <Switch
         android:id="@+id/theme"

@@ -1,4 +1,4 @@
-package com.twofolksresearch.motivationalquotes;
+package com.memor.thinkers.jilani.motivationalquotes;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
